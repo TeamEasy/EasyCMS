@@ -1,0 +1,6 @@
+<form id="pagerForm" action="__URL__/index" method="post">
+	<input type="hidden" name="pageNum" value="<{$currentPage|default='1'}>" />
+	<input type="hidden" name="numPerPage" value="<{$numPerPage}>" /><!--每页显示多少条-->
+	<input type="hidden" name="_order" value="<{$Think.request._order}>"/>
+	<input type="hidden" name="_sort" value="<{$Think.request._sort}>"/>
+</form>

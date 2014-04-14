@@ -1,0 +1,35 @@
+
+<div class="pageContent">
+	<form method="post" action="__URL__/update/navTabId/listlink/callbackType/closeCurrent"  class="pageForm required-validate" 
+		onsubmit="return validateCallback(this,dialogAjaxDone);"><?php  //窗体组件采用这个 iframeCallback(this, navTabAjaxDone); ?>
+		<input type="hidden" name="link_id" value="<{$vo.link_id}>"/>
+		<div class="pageFormContent" layoutH="60">
+			<dl>
+				<dt>网站昵称:</dt>
+				<dd><input type="text" class="required"  style="width:100%" name="name" value="<{$vo.name}>"/></dd>
+			</dl>
+			<dl>
+				<dt>网站地址:</dt>
+				<dd><input type="text" class="required"  style="width:100%" name="url" value="<{$vo.url}>"/></dd>
+			</dl>
+			
+			<dl>
+				<dt>状态：</dt>
+				<dd>
+					<input type="radio" name="isverify" value="0" <if condition="$vo.isverify eq 1 ">checked</if>/>正常
+					<input type="radio" name="isverify" value="1" <if condition="$vo.isverify eq 0 ">checked</if>/>锁定
+				</dd>
+			</dl>	
+			
+			
+		</div>
+		
+		<div class="formBar">
+			<ul>
+				<li><div class="buttonActive"><div class="buttonContent"><button type="submit">保存</button></div></div></li>
+				<li><div class="button"><div class="buttonContent"><button type="button" class="close">取消</button></div></div></li>
+			</ul>
+		</div>
+	</form>
+</div>
+

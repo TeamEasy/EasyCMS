@@ -1,0 +1,81 @@
+<include file="Public:pagerForm" />
+
+<div class="pageContent">
+	<div class="panelBar">
+		<ul class="toolBar">
+			<li><a class="add" href="__URL__/add" target="dialog" width="550" height="380" rel="user_msg" title="添加用户"><span>添加</span></a></li>
+			<li><a class="delete" href="__URL__/delete/id/{item_id}/navTabId/rbacuser" target="ajaxTodo" title="确定要删除吗?"><span>删除</span></a></li>
+			<li><a class="edit" href="__URL__/edit/id/{item_id}"  width="550" height="380" target="dialog"><span>修改信息</span></a></li>	
+			<li><a class="edit" href="__URL__/editpwd/id/{item_id}"  width="550" height="380" target="dialog"><span>修改密码</span></a></li>	
+			<li class="line">line</li>
+			<li><a class="icon"  href="javascript:navTabPageBreak();"><span>刷新</span></a></li>	
+		</ul>
+	</div>
+	<table class="table" width="100%" layoutH="75">
+		<thead>
+			<tr>
+				<th width="10">ID</th>
+				<th width="30">用户名</th>
+				<th width="40">上次登陆时间</th>
+				<th width="40">上次登陆IP</th>
+				<th width="40">所属组别</th>
+				<th width="40">状态</th>
+				<th width="40">操作</th>	
+			</tr>
+		</thead>
+		<tbody>
+			<foreach name="list" item="vo">
+				<tr target="item_id" rel="<{$vo.id}>" <if condition="$vo['username']==C('RBAC_SUPERADMIN')">style=""</if> >
+					<td><{$vo.id}></td>
+					<td><{$vo.username}></td>
+					<td><{$vo.logintime|date="Y-m-d H:i:s",###}></td>
+					<td><{$vo.loginip}></td>
+					<td>
+						<if condition="$vo['username']==C('RBAC_SUPERADMIN')">
+						<b>超级管理员</b>
+						<else />
+							<foreach name="vo.role" item="value">
+								<{$value.name}><!-- <{$value.remark}> -->
+							</foreach>
+						</if>
+					</td>
+					<td><{$vo.lock|islock=###}></td>
+					<td>
+
+<script>
+function updateLock(id,num){
+	$.post('__URL__/update/navTabId/rbacuser/callbackType/closeCurrent',{'id':id,'lock':num},function(data){
+		if (data) {
+			navTabPageBreak();
+		};	
+	});	
+}
+</script>
+						<if condition="$vo.lock eq 1">
+								<a href="javascript:void(0);" onclick="updateLock(<{$vo.id}>,0);">解锁</a>
+						<else/>
+							<if condition="$vo['username']==admin">无法锁定<else/>
+								<a href="javascript:void(0);" onclick="updateLock(<{$vo.id}>,1);">锁定</a>
+							</if>
+						</if>
+					</td>
+					
+				</tr>
+			</foreach>
+		</tbody>
+	</table>
+	<div class="panelBar">
+		<div class="pages">
+			<span>显示</span>
+			<select class="combox" name="numPerPage" onchange="navTabPageBreak({numPerPage:this.value})">
+				<option value="10" <if condition="$numPerPage eq 10 ">selected</if>>10</option>
+				<option value="15" <if condition="$numPerPage eq 15 ">selected</if>>15</option>
+				<option value="20" <if condition="$numPerPage eq 20 ">selected</if>>20</option>
+				<option value="25" <if condition="$numPerPage eq 25 ">selected</if>>25</option>
+				<option value="30" <if condition="$numPerPage eq 30 ">selected</if>>30</option>
+			</select>
+			<span>共<{$totalCount}>条</span>
+		</div>
+		<div class="pagination" targetType="navTab" totalCount="<{$totalCount}>" numPerPage="<{$numPerPage}>" pageNumShown="10" currentPage="<{$currentPage}>"></div>
+	</div>
+</div>

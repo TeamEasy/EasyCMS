@@ -1,0 +1,38 @@
+
+<div class="pageContent">
+	<form method="post" action="__URL__/update/navTabId/listfields/callbackType/closeCurrent"  class="pageForm required-validate" 
+		onsubmit="return validateCallback(this,dialogAjaxDone);"><?php  //窗体组件采用这个 iframeCallback(this, navTabAjaxDone); ?>
+		<input type="hidden" name="fields_id" value="<{$vo.fields_id}>"/>
+		<div class="pageFormContent" layoutH="60">
+			<dl>
+				<dt>配置项：</dt>
+				<dd>
+					<if condition="$vo.field eq 'title'">站点标题
+						<elseif condition="$vo.field eq 'copyright'"/>站点版权
+						<elseif condition="$vo.field eq 'ad'"/>
+						首页广告
+						<elseif condition="$vo.field eq 'announcement'"/>
+						站点公告
+						<else/>
+						站点描述
+					</if>
+				</dd>
+			</dl>
+			<br/><br/><br/><br/>
+			<dl>
+				<dt>配置值：</dt>
+				<dd>
+					<textarea  class="editor" name="content" tools="simple" id="content" cols="50" rows="15" class="required" ><{$vo.content}></textarea>
+				</dd>
+			</dl>
+		</div>
+		
+		<div class="formBar">
+			<ul>
+				<li><div class="buttonActive"><div class="buttonContent"><button type="submit">保存</button></div></div></li>
+				<li><div class="button"><div class="buttonContent"><button type="button" class="close">取消</button></div></div></li>
+			</ul>
+		</div>
+	</form>
+</div>
+

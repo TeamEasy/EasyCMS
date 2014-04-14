@@ -1,0 +1,89 @@
+/*
+# Copyright (C) 2013 DMeng.net
+Theme Name: 多梦主题2014
+Theme URI: http://www.dmeng.net/dmeng-theme-2014.html
+Author: 多梦
+Author URI: http://www.dmeng.net/
+Description: 多梦网络主题是一款拥有丰富语义网和个性化设置以及支持手机访问的响应式主题。当前版本是DMENG2014，在2014年01月15日发布。
+Version: 1.4.1
+Tags: 响应式主题,手机主题
+*/
+
+body { font-family:"Microsoft Yahei","冬青黑体简体中文 w3","宋体";white-space:normal;word-break:break-all;}
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{ font-family:"Microsoft Yahei","冬青黑体简体中文 w3","宋体";}
+h1, .h1{font-size:24px;}
+h2, .h2{border-bottom: 1px solid #dadada;padding-bottom:5px;font-size:21px;}
+h3, .h3{font-size:20px;}
+p {line-height:22px;font-size:13px;}
+.alignleft {float:left;} .alignright {float:right;} .alignnone {float:none;}
+.clean {clear:both;}
+.site-title {margin:0;font-family:"Microsoft Yahei","冬青黑体简体中文 w3","宋体";}
+.site-title span{font-size:16px;}
+.mt20 {margin-top:20px;}
+.mb20 {margin-bottom:20px;}
+.mr10 {margin-right:10px;}
+.ml10 {margin-left:10px;} .ml5 {margin-left:5px;} 
+code {white-space:normal;word-break:break-all;}
+blockquote {text-indent:0;border-left:10px solid #ccc;padding:15px 25px;background-color:#eee;display:block;}
+blockquote p{font-size:14px;line-height:24px;}
+.content {position:relative;z-index:999;}
+.content li{word-break:break-all;}
+.content p{margin-bottom:22px;font-size:15px;line-height:24px;}
+.content h3{font-weight:600px;}
+.content img{max-width:100%;}
+.searchResults strong{font-weight:normal;}
+.article_index {max-width:200px;padding-top:0 !important;padding-bottom:0 !important;}
+.stickyImg {width:100%;height:100px;overflow:hidden;}
+.stickyImg img {width:100%;}
+@media (max-width: 1200px) {
+	.stickyImg {height:129px;overflow:hidden;}
+}
+@media (max-width: 992px) {
+	.stickyImg {height:153px;overflow:hidden;}
+}
+@media (max-width: 767px) {
+	.stickyImg {height:auto;}
+}
+.stickyContent {height:128px;overflow:hidden;margin-bottom:15px;}
+@media (max-width: 767px) {
+  .stickyContent {height:auto;}
+}
+.stickyTitle {margin:5px 0 7px;}
+.stickyDesc p{margin-bottom:0;font-size:13px;}
+.indexCat .list-group-item span {display:block;height:20px;overflow:hidden;}
+.floatButton {position:fixed;top:50%;right:0;z-index:9999999;}
+.sidebar {position:relative;z-index:1;}
+.sidebar ul{padding:0;margin:10px;}
+.sidebar ul li{list-style:none;}
+.sidebar .list-group{padding:0;margin:0;}
+.panel{overflow:hidden;}
+.breadcrumb{margin-bottom:0;color:#999;}
+.breadcrumb a{color:#999;} 
+.breadcrumb a:hover, a:focus{color:#2a6496;text-decoration:none;}
+.latestpostBox {padding-left:0;padding-right:0;}
+.latestpost p{margin-bottom:0;font-size:13px;color:#666;}
+.latestpost .thumbnail{width:220px;max-height:120px;float:left;margin:10px 15px 10px 0;}
+@media (max-width: 479px) {
+	.latestpost .thumbnail{width:100%;max-height:500px;float:none;}
+}
+.latestpost .list-group-item{overflow:hidden;}
+.latestpost .h4{margin-top:10px;margin-bottom:10px;}
+.latestpost .sticky{background:#5cb85c;}
+.affix{top:0;padding-top:10px;background:#fff;}
+@media (max-width: 992px) {
+	.affix{position:relative;}
+}
+footer {margin-top:30px;position:relative;z-index:999;}
+footer .panel-body .panel-body {padding:0;}
+@media (min-width: 992px) {
+  .header-nav-right {
+    display: none;
+  }
+}
+@media (min-width: 1200px) {
+  .header-nav-right {
+    display: block;
+  }
+}
+footer ul {margin:0;padding:0;}
+footer ul li {display:inline;list-style: none;margin:0;padding: 0;}

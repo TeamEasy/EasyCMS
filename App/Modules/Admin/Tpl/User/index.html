@@ -1,0 +1,75 @@
+<include file="Public:pagerForm" />
+<div class="pageHeader">
+	<form rel="pagerForm" onsubmit="return navTabSearch(this);" method="post">
+	<input type="hidden" name="numPerPage" value="<{$numPerPage}>" /><!--每页显示多少条-->
+	<div class="searchBar">
+		<table class="searchContent">
+			<tr>
+				<td>
+					<b>搜索</b> &nbsp; 关键字：<input type="text" name="keyword" value="<{$Think.post.keyword}>" /> [用户名]
+				</td>
+				<td>
+					<div class="buttonActive"><div class="buttonContent"><button type="submit">检索</button></div></div>
+				</td>
+			</tr>
+		</table>
+	</div>
+	</form>
+</div> 
+<div class="pageContent">
+	<div class="panelBar">
+		<ul class="toolBar">
+			<li><a class="add" href="__URL__/add" target="dialog" width="550" height="380" rel="user_msg" title="添加学生信息"><span>添加</span></a></li>
+			<li><a class="delete" href="__URL__/delete/user_id/{item_id}/navTabId/listusers" target="ajaxTodo" title="确定要删除吗?"><span>删除</span></a></li>
+			<li><a title="确实要删除这些记录吗?" target="selectedTodo" target="dialog" rel="ids[]" href="__URL__/delAll" class="delete" ><span>批量删除</span></a></li>
+			<li><a class="edit" href="__URL__/edit/user_id/{item_id}"  width="550" height="380" target="dialog"><span>修改</span></a></li>
+			<li><a class="edit" href="__URL__/editpwd/user_id/{item_id}"  width="550" height="380" target="dialog"><span>修改密码</span></a></li>
+			<li class="line">line</li>
+			<li><a class="icon"  href="javascript:navTabPageBreak()"><span>刷新</span></a></li>
+			<!--<li><a class="icon" href="demo/common/dwz-team.xls" target="dwzExport" targetType="navTab" title="实要导出这些记录吗?"><span>导出EXCEL</span></a></li>-->
+		</ul>
+	</div>
+	<table class="table" width="100%" layoutH="112">
+		<thead>
+			<tr>
+				<th width="10"><input type="checkbox" group="ids[]" class="checkboxCtrl"></th>
+				<th width="30">用户名</th>
+				<th width="40">邮箱</th>
+				<th width="40">性别</th>
+				<th width="80">注册时间</th>
+				<th width="40">注册ip</th>
+				<th width="40">状态</th>
+				<th width="40">操作</th>
+			</tr>
+		</thead>
+		<tbody>
+			<foreach name="list" item="vo">
+				<tr target="item_id" rel="<{$vo.user_id}>">
+					<td><input name="ids[]" value="<{$vo['user_id']}>" type="checkbox">:<{$vo.user_id}></td>
+					<td><{$vo.username}></td>
+					<td><{$vo.email}></td>
+					<td><if condition="$vo.sex eq 1 ">男<else/>女</if></td>
+					<td><{$vo.regtime|date="Y-m-d H:m:s",###}></td>
+					<td><{$vo.regip}></td>
+					<td><if condition="$vo.islock eq 1 "><img src="../Public/Images/locked.gif"/><else/><img src="../Public/Images/ok.gif"/></if></td>
+					<td><{$vo.islock|showStatus=$vo['user_id']}>
+					</td>
+				</tr>
+			</foreach>
+		</tbody>
+	</table>
+	<div class="panelBar">
+		<div class="pages">
+			<span>显示</span>
+			<select class="combox" name="numPerPage" onchange="navTabPageBreak({numPerPage:this.value})">
+				<option value="10" <if condition="$numPerPage eq 10 ">selected</if>>10</option>
+				<option value="15" <if condition="$numPerPage eq 15 ">selected</if>>15</option>
+				<option value="20" <if condition="$numPerPage eq 20 ">selected</if>>20</option>
+				<option value="25" <if condition="$numPerPage eq 25 ">selected</if>>25</option>
+				<option value="30" <if condition="$numPerPage eq 30 ">selected</if>>30</option>
+			</select>
+			<span>共<{$totalCount}>条</span>
+		</div>
+		<div class="pagination" targetType="navTab" totalCount="<{$totalCount}>" numPerPage="<{$numPerPage}>" pageNumShown="10" currentPage="<{$currentPage}>"></div>
+	</div>
+</div>

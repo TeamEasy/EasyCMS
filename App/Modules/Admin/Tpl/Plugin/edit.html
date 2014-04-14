@@ -1,0 +1,34 @@
+
+<div class="pageContent">
+	<form method="post" action="__URL__/update/navTabId/listplugin/callbackType/closeCurrent"  class="pageForm required-validate" 
+		onsubmit="return validateCallback(this,dialogAjaxDone);"><?php  //窗体组件采用这个 iframeCallback(this, navTabAjaxDone); ?>
+		<input type="hidden" name="plugin_id" value="<{$vo.plugin_id}>"/>
+		<div class="pageFormContent" layoutH="60">
+			<dl>
+				<dt>插件名：</dt>
+				<dd><{$vo.name}></dd>
+			</dl>
+			<dl>
+				<dt>描述：</dt>
+				<dd><input type="text" class="required"  style="width:100%" name="desc" value="<{$vo.desc}>"/></dd>
+			</dl>
+			<dl>
+				<dt>前台钩子位置：</dt>
+				<dd>
+					<select name="position">
+						<option value="0" <if condition="$vo.position eq 0" >selected</if> >无</option>
+						<option value="1" <if condition="$vo.position eq 1" >selected</if> >文章标题右侧</option>
+					</select>
+				</dd>
+			</dl>	
+		</div>
+		
+		<div class="formBar">
+			<ul>
+				<li><div class="buttonActive"><div class="buttonContent"><button type="submit">保存</button></div></div></li>
+				<li><div class="button"><div class="buttonContent"><button type="button" class="close">取消</button></div></div></li>
+			</ul>
+		</div>
+	</form>
+</div>
+

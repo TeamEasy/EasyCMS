@@ -1,0 +1,77 @@
+<include file="Public:pagerForm" />
+
+<style>
+	.strong{font-size: 14px;color: #0b99db;}
+	.tabsContent a{color:#3361ad; border-radius: 4px;}
+	.action {margin:10px 0;overflow: hidden;border:1px solid #dcdcdc;height: auto;}
+	.action dt{display: block;height: 30px;background: #e6e6fa;line-height: 30px;}
+	.action dd{padding: 10px;float: left;}
+	
+</style>
+
+<div class="pageContent">
+	<div class="panelBar">
+		<ul class="toolBar">
+			<li><a class="add" href="__URL__/add/level/1" target="dialog" width="550" height="380" rel="user_msg" title="添加应用"><span>添加应用</span></a></li>
+			<li><a class="icon"  href="javascript:navTabPageBreak()"><span>刷新</span></a></li>
+		</ul>
+	</div>
+
+
+	<div class="pageContent" layoutH="0">
+		<div class="tabs" currentIndex="1" eventType="click">
+			<div class="tabsHeader">
+				<div class="tabsHeaderContent">
+					<ul>
+						<volist name="app" id="appName">
+							<li><a href="javascript:;"><span><{$appName.title}></span></a></li>
+						</volist>
+					</ul>
+				</div>
+			</div>
+			<div class="tabsContent" style="height:525px;">
+				
+				<foreach name='app' item="app">
+					<div>
+						<!-- 应用 -->
+						<p>	
+
+						<if condition="$app.name eq Admin">
+							<strong class="strong"><{$app.title}></strong> [ 
+							<a class="add" href="__URL__/add/pid/<{$app.id}>/level/2" target="dialog" width="550" height="380" rel="user_msg">添加控制器</a> ] [ 
+							<a class="add" href="__URL__/edit/id/<{$app.id}>" target="dialog" width="550" height="380" rel="user_msg">修改</a> ] [ 
+							<a href="__URL__/delete/id/<{$app.id}>/navTabId/rbacnode" class="delete" target="ajaxTodo" title="确定要删除吗?">删除</a> ]
+						<else/>
+							<strong class="strong">暂无可分配内容</strong> 
+						</if>
+						</p><br>
+						<foreach name="app.child" item="child">
+							<!-- 控制器 -->
+							<dl class="action">
+								<dt>
+									<strong class="strong"><{$child.title}></strong> [
+									<a class="add" href="__URL__/add/pid/<{$child.id}>/level/3" target="dialog" width="550" height="380" rel="user_msg">添加方法</a> ] [ 
+									<a class="add" href="__URL__/edit/id/<{$child.id}>" target="dialog" width="550" height="380" rel="user_msg">修改</a> ] [ 
+									<a href="__URL__/delete/id/<{$child.id}>/navTabId/rbacnode" class="delete" target="ajaxTodo" title="确定要删除吗?">删除</a> ]
+								</dt>
+							<foreach name="child.child" item="v">
+								<!-- 动作方法 -->
+								<dd>
+									<span><{$v.title}></span> [
+									<a class="add" href="__URL__/edit/id/<{$v.id}>" target="dialog" width="550" height="380" rel="user_msg">修改</a> ] [ 
+									<a href="__URL__/delete/id/<{$v.id}>/navTabId/rbacnode" class="delete" target="ajaxTodo" title="确定要删除吗?">删除</a> ]
+								<dd>
+							</foreach>
+							</dl>
+						</foreach>
+					</div>
+				</foreach>
+				
+			</div>
+			<div class="tabsFooter">
+				
+			</div>
+		</div>	
+	</div>
+
+</div>

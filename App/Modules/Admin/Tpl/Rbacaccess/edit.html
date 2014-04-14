@@ -1,0 +1,83 @@
+<style>
+	.strong{font-size: 14px;color: #0b99db;}
+	.tabsContent a{color:#3361ad; border-radius: 4px;}
+	.action {margin:10px 0;overflow: hidden;border:1px solid #dcdcdc;height: auto;}
+	.action dt{display: block;height: 30px;background: #e6e6fa;line-height: 30px;}
+	.action dd{padding: 10px;float: left;}
+	
+</style>
+<script>
+	$(function(){
+		$('input[level=1]').click(function(){
+			var inputs=$(this).parents('.app').find('input');
+			$(this).attr('checked')?inputs.attr('checked','checked'):inputs.removeAttr('checked');
+		});
+		$('input[level=2]').click(function(){
+			var inputs=$(this).parents('dl').find('input');
+			$(this).attr('checked')?inputs.attr('checked','checked'):inputs.removeAttr('checked');
+			$(this).parents('input').attr('checked');
+		});
+		$('input[level=3]').click(function(){
+			var level2=$(this).parent().parent().children().children('input[level=2]');
+			var level1=$(this).parent().parent().parent().children().children('input[level=1]');
+			$(this).attr('checked')?level2.attr('checked','checked'):false;
+			$(this).attr('checked')?level1.attr('checked','checked'):false;
+			
+		});
+		
+	})
+</script>
+<div class="pageContent">
+	<form method="post" action="__URL__/update/navTabId/rbacaccess/callbackType/closeCurrent"  class="pageForm required-validate" 
+		onsubmit="return validateCallback(this,dialogAjaxDone);"><?php  //窗体组件采用这个 iframeCallback(this, navTabAjaxDone); ?>
+		<input type="hidden" name="role_id" value="<{$rid}>"/>
+		<div class="tabs" currentIndex="1" eventType="click">
+			<div class="tabsHeader">
+				<div class="tabsHeaderContent">
+					<ul>
+						<volist name="node" id="appName">
+							<li><a href="javascript:;"><span><{$appName.title}></span></a></li>
+						</volist>
+					</ul>
+				</div>
+			</div>
+			<div class="tabsContent"  layoutH="70">
+				
+				<foreach name='node' item="app">
+					<div class="app">
+						<!-- 应用 -->
+						<p>
+							<strong class="strong"><{$app.title}></strong>
+							<input type="checkbox" name="access[]" value="<{$app.id}>_1" level="1" <if condition="$app['access']">checked='checked'</if> />
+						</p><br>
+						<foreach name="app.child" item="child">
+							<!-- 控制器 -->
+							<dl class="action">
+								<dt>
+									<strong class="strong"><{$child.title}></strong>
+									<input type="checkbox" name="access[]" value="<{$child.id}>_2" level="2" <if condition="$child['access']">checked='checked'</if> > 
+								</dt>
+							<foreach name="child.child" item="v">
+								<!-- 动作方法 -->
+								<dd>
+									<span><{$v.title}></span> 
+									<input type="checkbox" name="access[]" value="<{$v.id}>_3" level="3" <if condition="$v['access']">checked='checked'</if> >
+								</dd>
+							</foreach>
+							</dl>
+						</foreach>
+					</div>
+				</foreach>
+				
+			</div>
+			
+		</div>	 
+		<div class="formBar">
+			<ul>
+				<li><div class="buttonActive"><div class="buttonContent"><button type="submit">保存</button></div></div></li>
+				<li><div class="button"><div class="buttonContent"><button type="button" class="close">取消</button></div></div></li>
+			</ul>
+		</div>
+	</form>
+</div>
+

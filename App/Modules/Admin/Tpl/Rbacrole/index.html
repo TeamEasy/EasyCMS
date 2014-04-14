@@ -1,0 +1,50 @@
+<include file="Public:pagerForm" />
+<div class="pageContent">
+	<div class="panelBar">
+		<ul class="toolBar">
+			<li><a class="add" href="__URL__/add" target="dialog" width="550" height="380" rel="user_msg" title="添加学生信息"><span>添加</span></a></li>
+			<li><a class="delete" href="__URL__/delete/id/{item_id}/navTabId/rbacrole" target="ajaxTodo" title="确定要删除吗?"><span>删除</span></a></li>
+			<li><a class="edit" href="__URL__/edit/id/{item_id}"  width="550" height="380" target="dialog"><span>修改</span></a></li>
+			<li class="line">line</li>
+			<li><a class="icon"  href="javascript:navTabPageBreak()"><span>刷新</span></a></li>
+		</ul>
+	</div>
+	<table class="table" width="100%" layoutH="75">
+		<thead>
+			<tr align="center">
+				<th>id</th>
+				<th>角色名称</th>
+				<th>角色描述</th>
+				<th>状态</th>
+				<th>操作</th>
+		
+			</tr>
+		</thead>
+		<tbody>
+			<foreach name="list" item="vo">
+				<tr target="item_id" rel="<{$vo.id}>" align="center">
+					<td><{$vo.id}></td>
+					<td><{$vo.name}></td>
+					<td><{$vo.remark}></td>
+					<td><{$vo.status|isok=###}></td>
+					<td><a class="edit" width="750" height="580" rel="rbacaccess" href="<{:U('Admin/Rbacaccess/edit/',array('role_id'=>$vo['id']))}>"  width="550" height="380" target="dialog">配置权限</a></td>
+
+				</tr>
+			</foreach>
+		</tbody>
+	</table>
+	<div class="panelBar">
+		<div class="pages">
+			<span>显示</span>
+			<select class="combox" name="numPerPage" onchange="navTabPageBreak({numPerPage:this.value})">
+				<option value="10" <if condition="$numPerPage eq 10 ">selected</if>>10</option>
+				<option value="15" <if condition="$numPerPage eq 15 ">selected</if>>15</option>
+				<option value="20" <if condition="$numPerPage eq 20 ">selected</if>>20</option>
+				<option value="25" <if condition="$numPerPage eq 25 ">selected</if>>25</option>
+				<option value="30" <if condition="$numPerPage eq 30 ">selected</if>>30</option>
+			</select>
+			<span>共<{$totalCount}>条</span>
+		</div>
+		<div class="pagination" targetType="navTab" totalCount="<{$totalCount}>" numPerPage="<{$numPerPage}>" pageNumShown="10" currentPage="<{$currentPage}>"></div>
+	</div>
+</div>

@@ -1,0 +1,88 @@
+<html><head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Eascms</title>
+    <link rel="stylesheet" id="crayon-css" href="../Public/../default2/Css/crayon.min.css" type="text/css" media="all">
+    <link rel="stylesheet" id="crayon-theme-tomorrow-night-css" href="../Public/../default2/Css/tomorrow-night.css" type="text/css" media="all">
+    <link rel="stylesheet" id="crayon-font-monaco-css" href="../Public/../default2/Css/monaco.css" type="text/css" media="all">
+    <script charset="utf-8" async="" src="../Public/../default2/Js/cc.js"></script>
+    <script type="text/javascript" src="../Public/../default2/Js/jquery.js"></script>
+    <script type="text/javascript" src="../Public/../default2/Js/jquery-migrate.min.js"></script>
+    <script type="text/javascript">
+var CrayonSyntaxSettings = {"version":"2.5.0","is_admin":"0","ajaxurl":"http:\/\/www.qqoq.net\/wp-admin\/admin-ajax.php","prefix":"crayon-","setting":"crayon-setting","selected":"crayon-setting-selected","changed":"crayon-setting-changed","special":"crayon-setting-special","orig_value":"data-orig-value","debug":""};
+var CrayonSyntaxStrings = {"copy":"\u4f7f\u7528 %s \u590d\u5236\uff0c\u4f7f\u7528 %s \u7c98\u8d34\u3002","minimize":"Click To Expand Code"};
+
+</script>
+<script>
+          //改变图片的方法
+              function fleshVerify(ele){
+                ele.src=ele.src+'?'+Math.random();
+              }
+           
+</script>
+<script type="text/javascript" src="__TMPL__/Js/crayon.min.js"></script>
+<link type="text/css" rel="stylesheet" href="../Public/../default2/Css/jquery.fancybox.css">
+  <link type="text/css" rel="stylesheet" href="../Public/../default2/Css/style.css">
+  <script type="text/javascript" src="../Public/../default2/Js/m.js"></script>
+ </head>
+ <body class="home blog" style="">
+   <div id="BAIDU_DUP_fp_wrapper" style="position: absolute; left: -1px; bottom: -1px; z-index: 0; width: 0px; height: 0px; overflow: hidden; visibility: hidden; display: none;">
+  </div>
+<div id="b">
+   <div id="n">
+ <!--头部信息-->  
+      <include file='./App/Modules/Index/Tpl/default2/header.html' />
+ <!--头部信息--> 
+     <div id="e">
+        <span class="e_i"></span>
+        当前位置：<a>分类归档 &raquo;</a>
+    <{$catName}></div>
+<!--内容-->
+   <div id="j">
+      <div id="f">
+        <ul>
+         <foreach name="list" item="list" >
+            <li class="post-353 post type-post status-publish format-standard hentry category-wordpress tag-php-2 tag-seo tag-wordpress" id="post-353">
+        <div class="article">
+          <div class="newtitle">
+           <h2>
+            <a href="<{:U('Index/Article/index',array('articleid'=>$list['article_id']))}>" title="<{$list.title}>"><{$list.title}></a>
+            <span class="new"></span>
+          </h2>
+        </div><{$list.summary}> </div></li>
+       </foreach>
+      </ul>
+<div class="navigation"></div>
+</div>
+<div id="g">
+  <div class="g_s">
+    <div class="g_a">
+      <ul class="g_se">
+        <li>游览最多</li>
+        <li>网友最爱</li>
+        <li>随机文章</li>
+      </ul>
+    </div>
+  <div class="g_b">
+    <ul>
+    <foreach name="sidebar1" item="sidebar1Val">
+        <li><a href="<{:U('Index/Article/index',array('articleid'=>$sidebar1Val['article_id']))}>" title="<{$sidebar1Val.title}>"><{$sidebar1Val.title}></a></li>
+    </foreach>        
+    </ul>
+    <ul class="g_p">
+    <foreach name="sidebar2" item="sidebar2Val">
+    <li><a href="<{:U('Index/Article/index',array('articleid'=>$sidebar2Val['article_id']))}>" title="<{$sidebar2Val.title}>"><{$sidebar2Val.title}></a></li>
+    </foreach>
+  
+    </ul>
+    <ul>
+         <foreach name="sidebar3" item="sidebar3Val">
+            <li><a href="<{:U('Index/Article/index',array('articleid'=>$sidebar3Val['article_id']))}>"><{$sidebar3Val.title}></li></a> 
+          </foreach>
+    </ul>
+     </div>
+</div>  </div></div>
+ <!--结束--> 
+  </div>
+    <include file="./App/Modules/Index/Tpl/default2/footer.html" />
+  <!--头部信息--> 
+</body></html>

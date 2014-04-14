@@ -1,0 +1,54 @@
+
+<div class="pageContent">
+	<form method="post" action="__URL__/update/navTabId/rbacuser/callbackType/closeCurrent"  class="pageForm required-validate" 
+		onsubmit="return validateCallback(this,dialogAjaxDone);"><?php  //窗体组件采用这个 iframeCallback(this, navTabAjaxDone); ?>
+		<input type="hidden" name="id" value="<{$vo.id}>"/>
+		<div class="pageFormContent" layoutH="60">
+			<dl>
+				<dl>
+				<dt>用户名：</dt>
+				<dd><input type="text" class="required"  style="width:100%" name="username" value="<{$vo.username}>"/></dd>
+			</dl>
+			<!-- <dl>
+				<dt>密码：</dt>
+				<dd><input type="password" class="required"  style="width:100%" name="password"/></dd>
+			</dl> -->
+			<if condition="$vo['username']==C('RBAC_SUPERADMIN')">
+			<dl>
+				<dt>当前角色:</dt>
+				<dd>超级管理员</dd>
+			</dl>
+			<else />
+
+				<dl>
+					<dt>当前角色:</dt>
+					<dd><input type="hidden" name="role_id">
+						<{$name}>
+					</dd>
+				</dl>
+				<dl style="width:500px;">
+					<dt>更改角色:</dt>
+					<dd style="width:300px">
+
+						<select name="role_id" >
+							<option value="">请选择角色</option>
+							<foreach name="role" item="v">
+								<option value="<{$v['id']}>"><{$v.name}></option>
+							</foreach>
+						</select><!-- <span class="add-role">添加角色</span> -->
+					</dd>
+				</dl>
+				<p id="last"></p>
+			</if>
+			
+		</div>
+		
+		<div class="formBar">
+			<ul>
+				<li><div class="buttonActive"><div class="buttonContent"><button type="submit">保存</button></div></div></li>
+				<li><div class="button"><div class="buttonContent"><button type="button" class="close">取消</button></div></div></li>
+			</ul>
+		</div>
+	</form>
+</div>
+

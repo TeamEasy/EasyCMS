@@ -1,0 +1,61 @@
+*{
+	padding:0px;
+	margin:0px;
+	}
+body{
+	font-family:Arial, Helvetica, sans-serif;
+	background:url(../../../Images/bg.gif);
+	font-size:13px;
+    
+	}
+img{
+	border:0;
+	}
+.lg{width:468px; height:468px; margin:100px auto; background:url(../../../Images/login_bg.png) no-repeat;}
+.lg_top{ height:200px; width:468px;}
+.lg_main{width:400px; height:180px; margin:0 25px;}
+.lg_m_1{
+	width:290px;
+	height:100px;
+	padding:45px 55px 20px 55px;
+}
+.ur{
+	height:37px;
+	border:0;
+	color:#666;
+	width:236px;
+	margin:4px 28px;
+	background:url(../../../Images/user.png) no-repeat;
+	padding-left:10px;
+	font-size:16pt;
+	font-family:Arial, Helvetica, sans-serif;
+}
+.pw{
+	height:37px;
+	border:0;
+	color:#666;
+	width:236px;
+	margin:4px 28px;
+	background:url(../../../Images/password.png) no-repeat;
+	padding-left:10px;
+	font-size:16pt;
+	font-family:Arial, Helvetica, sans-serif;
+}
+
+.pww{
+	height:37px;
+	border:0;
+	color:#666;
+	width:86px;
+	margin:4px 28px;
+	background:url(../../../Images/code.png) no-repeat;
+	padding-left:10px;
+	font-size:16pt;
+	font-family:Arial, Helvetica, sans-serif;
+}
+.bn{width:330px; height:72px; background:url(../../../Images/enter.png) no-repeat; border:0; display:block; font-size:18px; color:#FFF; font-family:Arial, Helvetica, sans-serif; font-weight:bolder;}
+.lg_foot{
+	height:80px;
+	width:330px;
+	padding: 6px 68px 0 68px;
+}

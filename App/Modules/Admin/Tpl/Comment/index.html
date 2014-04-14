@@ -1,0 +1,49 @@
+<include file="Public:pagerForm" />
+<div class="pageContent">
+	<div class="panelBar">
+		<ul class="toolBar">
+			<li><a  target="selectedTodo" target="dialog" rel="ids[]" href="__URL__/rubAll" class="delete" ><span>批量放入回收站</span></a></li>
+			<li class="line">line</li>
+			<li><a class="icon"  href="javascript:navTabPageBreak()"><span>刷新</span></a></li>
+		</ul>
+	</div>
+	<table class="table" width="100%" layoutH="76">
+		<thead>
+			<tr>
+				<th width="10"><input type="checkbox" group="ids[]" class="checkboxCtrl"></th>
+				<th width="30">作者</th>
+				<th width="30">文章</th>
+				<th width="40">发布时间</th>
+				<th width="30">发布内容</th>
+				<th width="40">操作</th>
+			</tr>
+		</thead>
+		<tbody>
+			<foreach name="list" item="vo">
+				<tr target="item_id" rel="<{$vo.commend_id}>">
+					<td><input name="ids[]" value="<{$vo['commend_id']}>" type="checkbox">:<{$vo['commend_id']}></td>
+					<td><{$vo.username}></td>
+					<td><{$vo.title}></td>
+					<td><{$vo.pubtime|date="Y-m-d H:m:s",###}></td>
+					<td><{$vo.content}></td>
+					<td><{$vo.islock|crubbish=$vo['commend_id']}>
+					</td>
+				</tr>
+			</foreach>
+		</tbody>
+	</table>
+	<div class="panelBar">
+		<div class="pages">
+			<span>显示</span>
+			<select class="combox" name="numPerPage" onchange="navTabPageBreak({numPerPage:this.value})">
+				<option value="10" <if condition="$numPerPage eq 10 ">selected</if>>10</option>
+				<option value="15" <if condition="$numPerPage eq 15 ">selected</if>>15</option>
+				<option value="20" <if condition="$numPerPage eq 20 ">selected</if>>20</option>
+				<option value="25" <if condition="$numPerPage eq 25 ">selected</if>>25</option>
+				<option value="30" <if condition="$numPerPage eq 30 ">selected</if>>30</option>
+			</select>
+			<span>共<{$totalCount}>条</span>
+		</div>
+		<div class="pagination" targetType="navTab" totalCount="<{$totalCount}>" numPerPage="<{$numPerPage}>" pageNumShown="10" currentPage="<{$currentPage}>"></div>
+	</div>
+</div>

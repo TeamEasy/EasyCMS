@@ -1,0 +1,40 @@
+<div class="pageContent">
+	<form method="post" action="__URL__/insert/navTabId/rbacnode/callbackType/closeCurrent"  class="pageForm required-validate" 
+		onsubmit="return validateCallback(this,dialogAjaxDone);"><?php  //窗体组件采用这个 iframeCallback(this, navTabAjaxDone); ?>
+		<div class="pageFormContent" layoutH="60">
+			<input type="hidden" name='pid' value="<{$Think.request.pid}>">
+			<input type="hidden" name='level' value="<{$Think.request.level}>">
+			<dl>
+				<dt><if condition="$Think.request.level eq 1">应用<elseif condition="$Think.request.level eq 2" />控制器<else />方法</if>名称：</dt>
+				<dd><input type="text" class="required"  style="width:100%" name="name"/></dd>
+			</dl>
+			<dl>
+				<dt>应用描述：</dt>
+				<dd><input type="text" class="required"  style="width:100%" name="title"/></dd>
+			</dl>
+			<dl>
+				<dt>是否开启:</dt>
+				<dd>
+					开启&nbsp;&nbsp;<input type="radio" class="required"  name="status" value="1" checked />&nbsp;&nbsp;&nbsp;
+					关闭&nbsp;&nbsp;<input type="radio" class="required"  name="status" value="0"  />
+				</dd>
+			</dl>
+			<dl>
+				<dt>备　　注:</dt>
+				<dd>
+					<textarea name="remark" style="width: 220px; height: 50px; margin: 0px;"></textarea>
+				</dd>
+			</dl>
+			
+			
+		</div>
+		
+		<div class="formBar">
+			<ul>
+				<li><div class="buttonActive"><div class="buttonContent"><button type="submit">保存</button></div></div></li>
+				<li><div class="button"><div class="buttonContent"><button type="button" class="close">取消</button></div></div></li>
+			</ul>
+		</div>
+	</form>
+</div>
+

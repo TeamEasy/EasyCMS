@@ -1,0 +1,113 @@
+<html><head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title><{:R('Siteinfo/info',array('title'),'Widget')}></title>
+		<link rel="stylesheet" id="crayon-css" href="../Public/../default2/Css/crayon.min.css" type="text/css" media="all">
+		<link rel="stylesheet" id="crayon-theme-tomorrow-night-css" href="../Public/../default2/Css/tomorrow-night.css" type="text/css" media="all">
+		<link rel="stylesheet" id="crayon-font-monaco-css" href="../Public/../default2/Css/monaco.css" type="text/css" media="all">
+		<script charset="utf-8" async="" src="../Public/../default2/Js/cc.js"></script>
+		<script type="text/javascript" src="../Public/../default2/Js/jquery.js"></script>
+		<script type="text/javascript" src="../Public/../default2/Js/jquery-migrate.min.js"></script>
+ <script type="text/javascript" src="../Public/../default2/Js/jquery-1.7.2.min.js"></script>
+<script>
+    $(function(){
+        $('input[name="username"]').focus(function(){
+          $('#umessage').remove();
+        });
+          
+        $('input[name="username"]').blur(function(){
+          var username=$(this).val();
+            $.get('__APP__/Login/checkName',{'username':username},function(data){
+            if(username!=''){
+              if(data=='不允许'){
+                $('input[name="username"]').after('<span id="umessage" style="color:red">该用户名已经注册</span>');
+              }else{
+                $('input[name="username"]').after('<span id="umessage" style="color:green">恭喜可以注册</span>');
+              }
+              }else{
+                $('input[name="username"]').after('<span id="umessage" style="color:blue">注册名不能为空</span>');
+            }
+            })
+          });
+      });
+
+
+function fleshVerify(ele){
+ele.src=ele.src+'?'+Math.random();
+}
+</script>
+<script type="text/javascript" src="__TMPL__/Js/crayon.min.js"></script>
+<link type="text/css" rel="stylesheet" href="../Public/../default2/Css/jquery.fancybox.css">
+  <link type="text/css" rel="stylesheet" href="../Public/../default2/Css/style.css">
+	<script type="text/javascript" src="../Public/../default2/Js/m.js"></script>
+<style>
+	.p_margin{
+		margin:15px;
+	}
+</style>
+ </head>
+ <body class="home blog" style="">
+	<div id="BAIDU_DUP_fp_wrapper" style="position: absolute; left: -1px; bottom: -1px; z-index: 0; width: 0px; height: 0px; overflow: hidden; visibility: hidden; display: none;">
+	</div>
+  <div id="b">
+<a href="__ROOT__"><img alt="logo" src="../Public/../default2/Image/img.png" /></a>
+<div id="r">
+ 
+
+<div class="r_t" class="info">
+  <h3>注册帐号</h3><span>Easycms</span>
+</div>
+ <div class="r_c">
+  	<div class="r_l" >
+   		<form action="<{:U('Login/checkregs')}>" method="post">
+    		<p class="p_margin"><span class="r_s r_b_s">用&nbsp;&nbsp;户&nbsp;&nbsp;名</span>
+    	 			 <input name="username" placeholder="账号(必填)" required>
+    	 			 <span></span>
+    	    </p>
+  			<p class="p_margin"><span class="r_s r_b_s">密&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码</span>
+  			  <input type="password" class="form-control" name="password" placeholder="密码(必填)" required >
+  			</p>
+  			<p class="p_margin"><span class="r_s r_b_s">密&nbsp;码&nbsp;确&nbsp;认</span>
+  			  <input type="password" class="form-control" name="repassword" placeholder="确认密码(必填)" required>
+  			</p>
+  			<p class="p_margin"><span class="r_s r_b_s">邮&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;箱</span>
+  			  <input type="text" class="form-control" name="email" placeholder="确认密码(必填)" required>
+  			</p>
+  			<p class="p_margin"><span class="r_s r_b_s">验&nbsp;&nbsp;正&nbsp;&nbsp;码</span>
+  			  <input type="text" class="form-control" name="code" placeholder="验证码(必填)" required style="width:80px;">
+  			   <img id="verifyImg" SRC="<{:U('Login/verify')}>" onClick="fleshVerify(this)" border="0" alt="点击刷新验证码" style="cursor:pointer;width:80px;vertical-align:top;" align="absmiddle">
+  			</p>
+   		 
+   		 
+    	<p class="m2">
+    	<input  type="submit" value="确认注册">
+       </p>
+   </form>
+  
+  </div>
+  <div class="r_r">
+   <div class="r_r_r">EsayCMS</div>
+   <span class="r_r_s"></span>
+   <div class="r_r_l">
+   
+    
+    
+   </div>
+   <div class="r_r_a">
+      <span class="r_r_p">简介</span>
+    <div class="g_b r_r_pd">
+       <h1>EsayCMS</h1>
+         本程序由"三个臭皮匠"开发<br/>
+           开发队长:陈捷<br/>
+           开发人员:石武浩<br/>
+           开发人员:柳杰斌<br/>
+         
+         </ul>
+    </div>
+   </div>
+  </div>
+ </div>
+</div>
+	
+  	<include file="./App/Modules/Index/Tpl/default2/footer.html" />
+  <!--头部信息-->	
+</body></html>

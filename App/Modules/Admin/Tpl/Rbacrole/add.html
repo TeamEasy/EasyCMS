@@ -1,0 +1,32 @@
+<div class="pageContent">
+	<form method="post" action="__URL__/insert/navTabId/rbacrole/callbackType/closeCurrent"  class="pageForm required-validate" 
+		onsubmit="return validateCallback(this,dialogAjaxDone);"><?php  //窗体组件采用这个 iframeCallback(this, navTabAjaxDone); ?>
+		<div class="pageFormContent" layoutH="60">
+			<dl>
+				<dt>角色名称:</dt>
+				<dd><input type="text" class="required"  style="width:100%" name="name"/></dd>
+			</dl>
+			<dl>
+				<dt>角色描述:</dt>
+				<dd><input type="text" class="required"  style="width:100%" name="remark"/></dd>
+			</dl>
+			<dl>
+				<dt>状　　态:</dt>
+				<dd>
+					开启&nbsp;&nbsp;<input type="radio" class="required"  name="status" value="1" checked/>&nbsp;&nbsp;&nbsp;
+					关闭&nbsp;&nbsp;<input type="radio" class="required"  name="status" value="0"/>
+				</dd>
+			</dl>
+			
+			
+		</div>
+		
+		<div class="formBar">
+			<ul>
+				<li><div class="buttonActive"><div class="buttonContent"><button type="submit">保存</button></div></div></li>
+				<li><div class="button"><div class="buttonContent"><button type="button" class="close">取消</button></div></div></li>
+			</ul>
+		</div>
+	</form>
+</div>
+
