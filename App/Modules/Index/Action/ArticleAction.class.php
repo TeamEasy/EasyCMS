@@ -71,7 +71,7 @@ class ArticleAction extends CommonAction
 			$data['aid']=$aid;
 			$data['pubtime']=time();
 			$data['islock']=0;
-			$data['content']=$comment;
+			$data['content']=htmlspecialchars($comment);
 			$m=M('Comment')->add($data);
 			if($m){
 				echo '评论成功';
