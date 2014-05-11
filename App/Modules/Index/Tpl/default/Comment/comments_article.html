@@ -1,0 +1,59 @@
+    <!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<base href="__ROOT__/" />
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" >
+<title><{$article.title}>-<{:R('Siteinfo/info',array('title'),'Widget')}></title>
+<meta name="description" content="<{$article.summary}>" />
+<meta name="keywords" content="<{$article.keyword}>" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Bootstrap -->
+<link href="../Public/Css/bootstrap.min.css" rel="stylesheet" media="screen">
+<link href="../Public/Css/style.css" rel="stylesheet" media="screen">
+<script src="../Public/Js/jquery.js"></script>
+<script src="../Public/Js/bootstrap.min.js"></script>
+</head>
+<body id="body">
+      <div class="col-lg-14 col-md-14" id="comments">
+      	我的态度：
+      	<input type="radio" id="proposal" name="proposal" value="1" checked><img src="../Public/Images/zheng.png" alt="支持">
+      	<input type="radio" id="proposal" name="proposal" value="0"><img src="../Public/Images/fan.png" alt="反对">
+        <textarea rows="3" class="form-control" placeholder="输入你的评论内容" id="articleComments" name="articleComments"></textarea>
+        <button type="button" class="btn btn-primary" onclick="comment();">留言</button>
+        <br/><br/>
+      	<a name="comments"></a>
+        <div id="ds-ssr">
+          <ul id="commentlist" class="list-unstyled">
+          <foreach name="comments" item="commentsVal">
+            <li class="comment even thread-even depth-1" id="li-comment-667">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h3 class="panel-title"><{$commentsVal.username}> 在 <{$commentsVal.pubtime|date="Y-m-d H:i:s",###}> 说:
+              </div>
+              <div class="panel-body">
+                <{$commentsVal.content}>
+              </div>
+            </div>
+              <!-- #comment-## --> 
+            </li>
+            </foreach>
+            <!-- #comment-## -->
+          </ul>
+          <{$show}>
+        </div>
+      </div>
+      <script>
+          function comment(){
+              var commentVal=$('#articleComments').val();
+              var proposal=$('#proposal:checked').val();
+              var urlVal=window.location;
+              $.post("<{:U('Index/Article/addComment')}>",{aid:<{$aid}>,comment:''+commentVal,proposal:''+proposal},
+			  function(data){
+				alert(data);
+                location.reload();
+             });
+          }
+      </script>
+</body>
+</html>

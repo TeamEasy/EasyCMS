@@ -6,6 +6,7 @@
 class CommonAction extends Action {
 
 	public function _initialize() {
+		$this->theme('default');
 		if (!isset($_SESSION[C('USER_AUTH_KEY')])) {
  			$this->redirect('Admin/Login/login');
  		}

@@ -8,11 +8,24 @@ class SystemAction extends CommonAction
 {
 	
 	public function index() {
+		$themes=array();
+		$dir='./App/Modules/Index/Tpl/';
+		if($handle=opendir($dir)){
+			while($file=readdir($handle)){
+				if($file=='.'||$file=='..'||$file=='Public'||$file==C('DEFAULT_THEME')){
+					continue;
+				}
+				array_push($themes, $file);
+			}
+		}
+		closedir($handle);
+		$this->assign('themes',$themes);
 		$this->display();
 	}
 
 	Public function update(){
 		SaveSetting($_POST);
+		cookie('think_template',$_POST['DEFAULT_THEME']); 
 	}
 	
 	Public function updateSystemCache(){

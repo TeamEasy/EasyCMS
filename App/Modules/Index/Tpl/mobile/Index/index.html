@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<base href="__ROOT__/" />
+<meta http-equiv="content-type" content="text/html;charset=UTF-8">
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" >
+<title><{:R('Siteinfo/info',array('title'),'Widget')}></title>
+<meta name="description" content="<{:R('Siteinfo/info',array('description'),'Widget')}>" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="../Public/Css/bootstrap.min.css" rel="stylesheet" media="screen">
+<link href="../Public/Css/style.css" rel="stylesheet" media="screen">
+<script src="../Public/Js/jquery.js"></script>
+<script src="../Public/Js/bootstrap.min.js"></script>
+</head><body id="body">
+<header> 
+  <!-- 导航开始 -->
+ 	<include file="Public:header" />
+  <!-- 导航结束 --> 
+</header>
+<div class="container">
+  <div class="col-lg-8 col-md-8 content">
+    <div id="carousel-example-generic" class="carousel slide mb20" data-ride="carousel"> 
+      <!-- Indicators -->
+      <ol class="carousel-indicators">
+        <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+        <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+        <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+      </ol>
+      <!-- Wrapper for slides -->
+      <div class="carousel-inner">
+        <volist name="modelid1" id="images0" offset="0" length="1">
+        <div class="item active">
+          <a href="<{:U('Index/Article/index/',array('articleid'=>$images0['article_id']))}>" target="_blank"><img  style="margin:0 auto;max-height:300px;" src="<{$images0.content|imgs=$images0.content}>" alt="<{$images0.title}>" /></a>
+          <div class="carousel-caption"> </div>
+        </div>
+        </volist>
+        <volist name="modelid1" id="images" offset="1" length="2">
+        <div class="item"> <a href="<{:U('Index/Article/index/',array('articleid'=>$images['article_id']))}>" target="_blank"><img style="margin:0 auto;max-height:300px;" src="<{$images.content|imgs=$images.content}>" alt="<{$images.title}>" /></a>
+          <div class="carousel-caption"> </div>
+        </div>
+        </volist>
+      </div>
+      <!-- Controls --> 
+      <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev" > <span class="glyphicon glyphicon-chevron-left"></span> </a> <a class="right carousel-control" href="#carousel-example-generic" data-slide="next" > <span class="glyphicon glyphicon-chevron-right"></span> </a> </div>
+   <div class="media mb20"> <a class="pull-left" href="l"> <img class="media-object" alt="<{:R('Siteinfo/info',array('title'),'Widget')}>" src="../Public/Images/logo1.png"> </a>
+      <div class="media-body">
+        <h4 class="media-heading"><a href="" target="_blank"><{:R('Siteinfo/info',array('title'),'Widget')}></a></h4>
+        <{:R('Siteinfo/info',array('description'),'Widget')}> </div>
+    </div>
+    <div itemscope itemtype="">
+      
+<volist name="modelid1" id="modelid1" offset='0' length='3'>
+      <div class="col-lg-4 col-md-6 col-sm-6 mb20">
+        <div class="thumbnail">
+          <div class="stickyImg"  ><img src="<{$modelid1.content|imgs=$modelid1.content}>" itemprop="image"  /></div>
+          <div class="caption">
+            <div class="stickyContent">
+              <h3 class="stickyTitle"><a href="<{:U('Index/Article/index/',array('articleid'=>$modelid1['article_id']))}>" title="<{$modelid1.title}>"><span itemprop="itemListElement"><{$modelid1.title}></span></a></h3>
+              <div class="stickyDesc" itemprop="description">
+                <p><{$modelid1.summary}></p> 
+              <!--   <p><{$modelid1.content|imgs=$modelid1.content}></p> -->
+              </div>
+            </div>
+            <a itemprop="url" href="<{:U('Index/Article/index/',array('articleid'=>$modelid1['article_id']))}>" class="btn btn-primary" role="button" target="_blank">阅读全文</a> </div>
+        </div>
+      </div>
+</volist>
+    </div>
+
+
+<Volist name="modelid0" id="modelids">
+    <div class="col-lg-6 col-md-6 col-sm-6 mb20 indexCat" itemscope itemtype="">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title" itemprop="name"><a href="<{:U('Index/List/index',array('catsid'=>$modelids['id']))}>"><{$modelids.name}></a></h3>
+        </div>
+       <ul class="list-group">
+       <Volist name="modelids.Article" id="Articles" >
+        <if condition="$Articles.ispush eq 1">
+          <a itemprop="url" href="<{:U('Index/Article/index/',array('articleid'=>$Articles['article_id']))}>"class="list-group-item">
+          <span itemprop="itemListElement"><{$Articles.title}></span>
+          </a>
+         </if> 
+       </Volist>
+     
+      </ul>
+      </div>
+    </div>
+</Volist>
+    
+   
+ 
+
+
+  </div>
+  <div class="col-lg-4 col-md-4 sidebar">
+    <div class="clean"></div>
+    <aside class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">公告</h3>
+      </div>
+      <div class="panel-body">
+      		<{:R('Siteinfo/info',array('announcement'),'Widget')}>
+      </div>
+    </aside>
+   
+
+    <div class="panel-group mb20" id="accordion">
+     
+
+      <div class="panel panel-danger">
+        <div class="panel-heading">
+          <h3 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" class="collapsed">
+              <span class="glyphicon glyphicon-fire mr10"></span>
+              <span itemprop="name">按赞的次数推荐的5篇</span>
+            </a>
+          </h3>
+        </div>
+       
+        <div id="collapseOne" class="panel-collapse collapse" style="height: 0px;">
+      <foreach name="approval" item="approval">
+
+
+
+
+        <a href="<{:U('Index/Article/index/',array('articleid'=>$approval['article_id']))}>" class="list-group-item" itemprop="url">
+        <span itemprop="itemListElement"><{$approval.title}></span>
+        </a>
+      </foreach>
+        </div>
+      </div>
+    
+
+      <div class="panel panel-success">
+        <div class="panel-heading">
+          <h3 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" class="collapsed">
+              <span class="glyphicon glyphicon-volume-up mr10"></span>
+              <span itemprop="name">最新热门的5篇文章</span>
+            </a>
+          </h3>
+        </div>
+        <div id="collapseTwo" class="panel-collapse collapse" style="height: 0px;">
+        <foreach name="approval2" item="approval2">
+        <a href="<{:U('Index/Article/index/',array('articleid'=>$approval2['article_id']))}>" class="list-group-item" itemprop="url">
+        <span itemprop="itemListElement"><{$approval2.title}></span>
+        </a>
+       </foreach>
+         </div>
+      </div>
+    
+
+      <div class="panel panel-info">
+        <div class="panel-heading">
+          <h3 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" class="">
+              <span class="glyphicon glyphicon-thumbs-up mr10"></span>
+              <span itemprop="name">随机推荐5篇精选文章</span>
+            </a>
+          </h3>
+        </div>
+      <div id="collapseThree" class="panel-collapse in" style="height: auto;">
+        <foreach name="approval3" item="approval3">
+        <a href="<{:U('Index/Article/index/',array('articleid'=>$approval3['article_id']))}>" class="list-group-item" itemprop="url">
+        <span itemprop="itemListElement"><{$approval3.title}></span>
+        </a>
+        </foreach>
+        </div>
+      </div>
+    </div>
+    
+
+
+    <aside class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">最新注册会员</h3>
+      </div>
+      <ul class="ds-recent-visitors" data-num-items="24" data-show-time="0" data-avatar-size="44" id="ds-recent-visitors">
+        <volist name="portrait" id="portraits">
+        <div class="ds-avatar" style="margin:4px;float:left;"><a title="<{$portraits.username}>"><img src="<{$portraits.photo|photos=$portraits.photo}>" alt="" style="width:44px;height:44px"></a></div>
+      </volist>
+      </ul>
+    </aside>
+    <div id="ad" data-spy="affix" class="fade in"><a class="close" data-dismiss="alert" href="#" aria-hidden="true" style="position:absolute;color:#c5c5c5;" title="关闭"><span class="glyphicon glyphicon-ban-circle"></span></a>
+      <aside class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">赞助商</h3>
+        </div>
+        <div class="panel-body" style="padding:0;text-align:left;">
+        	<{:R('Siteinfo/info',array('ad'),'Widget')}>
+        </div>
+      </aside>
+    </div>
+    <!-- 右侧底部广告 --> 
+    <script>var ad=$('#ad'),st;var sd=$('.sidebar'),st;ad.attr('data-offset-top',ad.offset().top+ad.innerWidth());var wd=sd.innerWidth()-30;ad.attr({style:'width:'+wd+'px'});</script> 
+  </div>
+  <div class="clean"></div>
+  </div>
+<footer id="footer">
+  <div class="col-lg-12 col-md-12">
+    <div class="container">
+      <div class="panel panel-default">
+        <div class="panel-body text-muted">
+          <ul>
+             <volist name="links" id="link">
+             <li ><a href="<{$link.url}>" target="_blank"><{$link.name}></a><span>&nbsp;&nbsp;</li>
+            </volist>
+            <li ><a href="<{:U('Reason/index')}>" style="color:red"><span class="glyphicon glyphicon-list-alt"></span>点击申请链接</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+<!-- footer start -->
+<include file="Public:footer" />
+<!-- footer end -->
+<div class="btn-group-vertical floatButton">
+  <button type="button" class="btn btn-default" id="goTop" title="去顶部"><span class="glyphicon glyphicon-arrow-up"></span></button>
+  <button type="button" class="btn btn-default" id="refresh" title="刷新"><span class="glyphicon glyphicon-repeat"></span></button>
+  <button type="button" class="btn btn-default" id="goBottom" title="去底部"><span class="glyphicon glyphicon-arrow-down"></span></button>
+</div>
+<!-- 去顶部 --> 
+<script type="text/javascript">
+jQuery(document).ready(function($){
+  $('#goTop').click(function(){$('html,body').animate({scrollTop: '0px'}, 800);});
+  $('#goBottom').click(function(){$('html,body').animate({scrollTop:$('#footer').offset().top}, 800);});
+  $('#refresh').click(function(){location.reload();});
+});
+</script>
+</body>
+</html>

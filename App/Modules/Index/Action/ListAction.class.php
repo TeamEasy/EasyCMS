@@ -30,6 +30,6 @@ class ListAction extends CommonAction
 		$this->assign('sidebar2',$sidebar2);
 		//随机5篇
 		$this->assign('sidebar3',$sidebar3);
-		$this->display(C('TMPL_DEFAULT_THEME').'/list_article');
+		$this->display('list_article');
 	}
 }

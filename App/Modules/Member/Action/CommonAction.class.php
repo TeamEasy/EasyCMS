@@ -5,6 +5,9 @@
  */
 class CommonAction extends Action {
 	public function _initialize() {
+		if (ismobile()) {
+            C('DEFAULT_THEME','mobile');
+        }
 		if(empty($_SESSION[C('USER_AUTH_KEY_F')])){
 			$this->error('请先登入',U('Index/Index/index'));
 			return;

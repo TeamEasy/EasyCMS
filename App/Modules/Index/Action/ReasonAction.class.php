@@ -12,7 +12,7 @@ class  ReasonAction extends CommonAction{
 			$this->assign('approval',$approval1);
 			$this->assign('approval2',$approval2);
 			$this->assign('approval3',$approval3);
-			$this->display(C('TMPL_DEFAULT_THEME').'/reason');
+			$this->display('reason');
 		}
 		
 	public function add(){

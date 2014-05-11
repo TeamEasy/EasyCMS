@@ -34,6 +34,6 @@ class IndexAction extends CommonAction
 		//显示首页右侧用户注册头像
 		$this->assign('approval2',$approval2);
 		//显示模板	
-		$this->display(C('TMPL_DEFAULT_THEME').'/index');
+		$this->display('index');
 	}
 }

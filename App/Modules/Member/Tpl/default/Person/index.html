@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<meta http-equiv="content-type" content="text/html;charset=UTF-8">
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" >
+<!--[if lte IE 7]><script>window.location.href='http://cdn.dmeng.net/upgrade-your-browser.html?referrer=http://www.dmeng.net/';</script><![endif]-->
+<title>个人中心-<{:R('Index/Siteinfo/info',array('title'),'Widget')}></title>
+<meta name="description" content="<{:R('Siteinfo/info',array('description'),'Widget')}>" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="../Public/Css/bootstrap.min.css" rel="stylesheet" media="screen">
+<!--[if lt IE 9]>
+<script src="http://cdn.dmeng.net/wp-content/themes/dmeng/js/html5shiv.js"></script>
+<script src="http://cdn.dmeng.net/wp-content/themes/dmeng/js/respond.min.js"></script>
+<![endif]-->
+<link href="../Public/Css/style.css" rel="stylesheet" media="screen">
+<script src="../Public/Js/jquery.js"></script>
+<script src="../Public/Js/bootstrap.min.js"></script>
+</head><body id="body">
+<header> 
+  <!-- 导航开始 -->
+ 	<include file="Index@Public:header" />
+  <!-- 导航结束 --> 
+</header>
+<div class="container">
+  <div class="col-lg-8 col-md-8 content">
+  <script>
+  $(function(){
+  $('#person').click(function(){
+    $.post("__APP__/Member/Person/person",{},function(data){
+      $('#content').html(data);
+      //alert(data);
+    });
+    
+  });
+  $('#data2').click(function(){
+    $.post("__APP__/Member/Person/data",{},function(data){
+      $('#content').html(data);
+      //alert(data);
+    });
+    
+  });
+
+    $('#person3').click(function(){
+    $.post("__APP__/Member/Person/person",{},function(data){
+      $('#content').html(data);
+      //alert(data);
+    });
+    
+  });
+})
+</script>
+<div >
+    <div class="row row-offcanvas row-offcanvas-left">
+        <div class="col-md-2 uc_left sidebar-offcanvas" id="sidebar" role="navigation">
+          <ul class="nav nav-pills  nav-stacked uc_left ">
+             <li class="left_head"><h4>会员中心</h4></li>
+              <li><a href="<{:U(Person/index)}>">我的首页</a></li>
+              <li if(action_name="='base'" ||action_name="='head'" 'class="check" ';}=""><a href="javascript:void(0)" id="person">资料修改</a></li>
+          </ul>
+        </div>
+    <div class="col-md-10" id="content">
+      <p class="pull-left visible-xs">
+        <a class="label label-default" data-toggle="offcanvas"></a>
+      </p>
+    <div class="row">
+  <div class="col-md-3 offset-1">
+      <a href="javascript:void(0)" class="thumbnail uc-zyl" id="data2">
+          <if condition="$persons.photo eq null">
+            <img src="__AVATAR__/nophoto.gif">
+          <else/>
+            <img src="__AVATAR__/avatar_<{$persons.photo}>"></if>
+            <label class="pic-text">点击设置个性图像</label>
+        </a>
+  </div>
+      <div class="col-md-8"><p>
+      <strong></strong>
+      <span class="text-muted"></span>
+      <a href="javascript:void(0)" id="person3">编辑资料</a>
+      </p>
+      注册时间<p class="text-muted"><{$persons.regtime|date="Y-m-d H:m:s",###}></p>
+      注册ip<p class="text-muted"><{$persons.regip}></p>
+    </div>
+      </div>
+	</div> 
+      </div>
+	</div> 
+  </div>
+  <div class="col-lg-4 col-md-4 sidebar">
+    <div class="clean"></div>
+    <aside class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">公告</h3>
+      </div>
+      <div class="panel-body">
+        <{:R('Index/Siteinfo/info',array('announcement'),'Widget')}>
+      </div>
+    </aside>
+      <div class="panel panel-warning">
+        <div class="panel-heading">
+          <h3 class="panel-title"> <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" class=""> <span class="glyphicon glyphicon-pushpin mr10"></span> <span itemprop="name">随机推荐5篇文章</span> </a> </h3>
+        </div>
+        <div  class="panel-collapse in" style="height: auto;"> 
+			   <foreach name="sidebar3" item="sidebar3Val">
+        		<a href="<{:U('Index/Article/index',array('articleid'=>$sidebar3Val['article_id']))}>" class="list-group-item"><span><{$sidebar3Val.title}></span></a> 
+        	</foreach>
+        </div>
+      </div>
+  </div>
+  <div class="clean"></div>
+</div>
+<!-- footer start -->
+<include file="Index@Public:footer" />
+<!-- footer end -->
+<div class="btn-group-vertical floatButton">
+  <button type="button" class="btn btn-default" id="goTop" title="去顶部"><span class="glyphicon glyphicon-arrow-up"></span></button>
+  <button type="button" class="btn btn-default" id="refresh" title="刷新"><span class="glyphicon glyphicon-repeat"></span></button>
+  <button type="button" class="btn btn-default" onclick="window.open('#');" title="赞"><span class="glyphicon glyphicon-thumbs-up"></span></button>
+  <button type="button" class="btn btn-default" id="goBottom" title="去底部"><span class="glyphicon glyphicon-arrow-down"></span></button>
+</div>
+<!-- 去顶部 --> 
+<script type="text/javascript">
+jQuery(document).ready(function($){
+  $('#goTop').click(function(){$('html,body').animate({scrollTop: '0px'}, 800);});
+  $('#goBottom').click(function(){$('html,body').animate({scrollTop:$('#footer').offset().top}, 800);});
+  $('#goComments').click(function(){$('html,body').animate({scrollTop:$('#comments').offset().top}, 800);});
+  $('#refresh').click(function(){location.reload();});
+});
+</script>
+</body>
+</html>

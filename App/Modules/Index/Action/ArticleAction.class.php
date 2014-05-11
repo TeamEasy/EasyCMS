@@ -38,9 +38,9 @@ class ArticleAction extends CommonAction
             $img = $matches[2];
     		$this->assign('imgs',$img);
     		//dump($img);
-			$this->display(C('TMPL_DEFAULT_THEME').'/image_article');
+			$this->display('image_article');
 		}else{
-			$this->display(C('TMPL_DEFAULT_THEME').'/article_article');
+			$this->display('article_article');
 		}
 	}
 

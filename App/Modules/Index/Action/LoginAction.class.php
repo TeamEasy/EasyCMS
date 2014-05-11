@@ -9,8 +9,17 @@ class LoginAction extends Action{
 		$this->redirect("Index/Index/index");
 	}
 
+	Public function _initialize(){
+   		// 控制器初始化方法
+   		// 判断是否手机访问
+   		if (ismobile()) {
+            C('DEFAULT_THEME','mobile');
+        }
+	}
+
+
 	public function index(){
-		$this->display(C('TMPL_DEFAULT_THEME').'/login');
+		$this->display('login');
 	}
 	public function checkLogin(){
 		if($_SESSION["verify"]!=md5($_POST['code'])){
@@ -38,7 +47,7 @@ class LoginAction extends Action{
 }
 
 public function checkreg(){
-		$this->display(C('TMPL_DEFAULT_THEME').'/checkreg');
+		$this->display('checkreg');
 }
 public function checkregs(){
 	if($_SESSION["verify"]!=md5($_POST['code'])){

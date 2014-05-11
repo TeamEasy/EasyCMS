@@ -12,14 +12,14 @@ class PersonAction extends CommonAction{
 		$id=$_SESSION[C('USER_AUTH_KEY_ID')];
 		$result =$User->find($id);
 		$this->assign('persons',$result);
-		$this->display('default/index');
+		$this->display('index');
 	}
 	public function person(){
 		$User=M('Member_user');
 		$id['user_id']=$_SESSION[C('USER_AUTH_KEY_ID')];
 		$result =$User->where($id)->find();
 		$this->assign('persons',$result);
-		$this->display('default/person');
+		$this->display('person');
 	}
 
 	public function data(){
@@ -27,14 +27,14 @@ class PersonAction extends CommonAction{
 		$id['user_id']=$_SESSION[C('USER_AUTH_KEY_ID')];
 		$result =$User->where($id)->find();
 		$this->assign('persons',$result);
-		$this->display('default/data');
+		$this->display('data');
 	}
 	public function avatar(){
 		$User=M('Member_user');
 		$id['user_id']=$_SESSION[C('USER_AUTH_KEY_ID')];
 		$result =$User->where($id)->find();
 		$this->assign('persons',$result);
-		$this->display('default/avatar');
+		$this->display('avatar');
 	}
 	
 	public function Profile(){

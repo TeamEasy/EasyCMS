@@ -6,6 +6,7 @@
 class IndexAction extends Action{
 	//安装首页
 	public function index(){
+		$this->theme('default');
 		if(file_exists('./App/Modules/Install/Data/install.lock')){
 			$this->error('已经成功安装了EasyCMS，请不要重复安装!如果需要重装，请先删除./App/Modules/Install/Data/install.lock');
 		}
@@ -18,6 +19,7 @@ class IndexAction extends Action{
 	
 	//安装完成
 	public function complete(){
+		$this->theme('default');
 		$step = session('step');
 
 		if(!$step){

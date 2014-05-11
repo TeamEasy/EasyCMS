@@ -1,0 +1,58 @@
+<script>
+	$(function(){
+	$('#person1').click(function(){
+		$.post("__APP__/Member/Person/person",{},function(data){
+			$('#content').html(data);
+			//alert(data);
+		});
+ 		
+	});
+
+	$('#Data1').click(function(){
+		$.post("__APP__/Member/Person/data",{},function(data){
+			$('#content').html(data);
+			//alert(data);
+		});
+ 		
+	});
+})
+</script>
+
+<div class="uc_right">
+		<div class="r_nav_top">
+			<ul class="nav nav-tabs r_nav_title">
+				<li><a href="javascript:void(0)" id="person1">基本资料</a></li>
+				<li><a href='javascript:void(0)' id="Data1">头像修改</a></li>
+				<li class="active"><a href="#">安全信息</a></li>
+			</ul>
+		</div>
+						<div class="r_form_e row" id="content">
+							<div class="col-md-8">
+							<form action="<{:U('Person/pwd')}>" method="post">
+								<table class="table" method="post">
+									<tbody><tr>
+										<th class="form_t">原密码&nbsp;&nbsp;&nbsp;</th>
+										<td>      
+										<input type="password" class="form-control" name="password" required>
+										</td>
+									</tr>
+									<tr>
+										<th class="form_t">新密码&nbsp;&nbsp;&nbsp;</th>
+										<td><input type="password" class="form-control" name="pwd" required></td>
+									</tr>
+									<tr>
+										<th class="form_t">重复密码</th>
+										<td><input type="password" class="form-control" name="rpwd" required></td>
+									</tr>
+									
+									
+									<tr>
+										<td colspan="2">
+										<button type="submit" class="btn  btn-primary right">提交信息</button>
+										</td>
+									</tr>
+								</tbody></table>
+							</form>
+							</div>
+						</div>
+					</div>

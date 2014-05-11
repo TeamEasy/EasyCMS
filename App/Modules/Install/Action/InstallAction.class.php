@@ -6,6 +6,7 @@
 class InstallAction extends Action{
 
 	protected function _initialize(){
+		$this->theme('default');
 		if(session('step') === null){
 			$this->redirect('Index/index');
 		}

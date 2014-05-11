@@ -20,7 +20,7 @@ class CommentAction extends CommonAction
 		
 		$this->assign('show',$show);
 		$this->assign('comments',$comments);
-		$this->display(C('TMPL_DEFAULT_THEME').'/comments_article');
+		$this->display('comments_article');
 	}
 
 }
