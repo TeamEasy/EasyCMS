@@ -1,6 +1,6 @@
 <?php
  return array (
-  'DEFAULT_THEME' => 'mobile',
+  'DEFAULT_THEME' => 'default',
   'TMPL_DETECT_THEME' => true,
   'THEME_LIST' => 'default,default2,mobile',
   'HTML_CACHE_TIME' => '100',
