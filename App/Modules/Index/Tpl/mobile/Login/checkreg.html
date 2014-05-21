@@ -33,9 +33,15 @@
           });
       });
 
-      function fleshVerify(ele){
-          ele.src=ele.src+'?'+Math.random();
-          };
+function fleshVerify(type){ 
+	//重载验证码
+	var timenow = new Date().getTime();
+	if (type){
+		$('#verifyImg').attr("src", '__URL__/verify/adv/1/'+timenow);
+	}else{
+		$('#verifyImg').attr("src", '__URL__/verify/'+timenow);
+	}
+}
    </script>
 
   </head>
