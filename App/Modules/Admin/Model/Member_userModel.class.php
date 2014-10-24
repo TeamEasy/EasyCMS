@@ -7,8 +7,9 @@ class Member_userModel extends Model{
 	
 	//自动验证（参考手册中6.15自动验证）
 	protected $_validate = array(
-		 array('username','/^[a-z0-9]{2,10}$/i','账号信息必须大于2位到10位字符之间！'), //默认情况下用正则进行验证
-		 array('username','','帐号名称已经存在！',0,'unique',1), // 在新增的时候验证name字段是否唯一
+		 array('usernam','/(^[A-Za-z0-9]{2,12}$)|(^[\x{4e00}-\x{9fa5}]{2,10}$)/u','请输入2到12个字符或者汉字'),
+		 array('username','require',"账号必须填写"), 
+		 array('username','','帐号名称已经存在！',0,'unique',1),// 在新增的时候验证name字段是否唯一
 		 array('password','require','密码必须填写！'), //默认情况下用正则进行验证
 		 array('email','email','邮箱格式错误',2),//不为空时验证
 		 
