@@ -5,8 +5,9 @@
  */
 class Member_userModel extends Model{
 	protected $_validate=array(
-		 array('usernam','/(^[A-Za-z0-9]{2,10}$)|(^[\x{4e00}-\x{9fa5}]{2,10}$)/u','请输入2到10个字符或者汉字'),
+		 array('usernam','/(^[A-Za-z0-9]{2,12}$)|(^[\x{4e00}-\x{9fa5}]{2,10}$)/u','请输入2到12个字符或者汉字'),
 		 array('username','require',"账号必须填写"), 
+		 array('username','','帐号名称已经存在！',0,'unique',1),// 在新增的时候验证name字段是否唯一
 		 array('password','/^[a-z0-9]{6,16}$/i','密码不能少于6或大于16位之间'),
 		 array('password','require','密码必须填写！'),  
 		 array('password','require','确认密码必须填写！'),
