@@ -71,7 +71,27 @@ class UserAction extends CommonAction{
 		$this->display('editpwd');
 	}
 
-	public function update() {
+	
+        public function update() {
+		$model = M('Member_user');
+		if(false === $model->create()) {
+			$this->error($model->getError());
+		}
+		// 更新数据
+		if(false !== $model->save()) {
+			// 回调接口
+			if (method_exists($this, '_tigger_update')) {
+				$this->_tigger_update($model);
+			}
+			//成功提示
+			$this->success(L('更新成功'));
+		} else {
+			//错误提示
+			$this->error(L('更新失败'));
+		}
+	}
+
+	public function updatepwd() {
 		$model = D('Member_user');
 		if(false === $model->create()) {
 			$this->error($model->getError());
@@ -89,6 +109,7 @@ class UserAction extends CommonAction{
 			$this->error(L('更新失败'));
 		}
 	}
+	
 	
 
 	public function changeState() {
