@@ -30,7 +30,7 @@ class LoginAction extends Action{
 			 $this->error(($User->getError()));
 		}else{
 		$name=$User->create();
-		$where['username']=$name['username'];
+		$where['username']=strtolower($name['username']);
 		$where['password']=md5($name['password']);
 		$result =$User->where($where)->find();
 		if($result['islock']==1){
