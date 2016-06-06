@@ -6,5 +6,7 @@
 
 - **正式使用时建议修改index.php下的APP_DEBUG为FALSE** 
 >陈捷编写
+>
 >联系邮箱 c@easycms.cc
+>
 >QQ 916402586（如有紧急问题请加我QQ，加我请注明信息）
