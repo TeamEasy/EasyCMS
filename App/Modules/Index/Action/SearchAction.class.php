@@ -13,7 +13,7 @@ class SearchAction extends CommonAction
 		}
 		$where['title']=$put;
 		$where['content']=$put;
-
+		$where['islock'] = 0;
 		$count=M('Article')->where($where)->count();
 		import('ORG.Util.Page');
 		$page=new page($count,10);
