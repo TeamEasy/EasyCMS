@@ -45,7 +45,7 @@ class PersonAction extends CommonAction{
 		}else{
 			$where['email']=$result['email'];
 			$where['sex']=$result['sex'];
-			$id=$_POST['id'];
+			$id=$_SESSION[C('USER_AUTH_KEY_ID')];
 			$m=$User->where($where)->find();
 				if($m){
 					$this->error('邮箱未更新');
