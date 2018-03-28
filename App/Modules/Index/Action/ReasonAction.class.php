@@ -16,13 +16,16 @@ class  ReasonAction extends CommonAction{
 		}
 		
 	public function add(){
-		$Link = D("Link"); 
-			if (!$Link->create()){
-			 $this->error(($Link->getError()));
+		$link = D("Link"); 
+		if (!$link->create()){
+			$this->error(($link->getError()));
 		}else{
-		$urlname=$Link->create();
-		$Link->where($urlname)->add();
-			if($Link){
+			$urlname=$link->create();
+			foreach($urlname as $key => $value){
+				$urlname[$key] = removeXSS($value);
+			}
+			$link->add($urlname);
+			if($link){
 				$this->success('友情链接申请提交成功，管理员审核中',U('Index/index'));
 			}else{
 				$this->error('友情链接申请提交失败');
