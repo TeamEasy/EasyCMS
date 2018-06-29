@@ -11,6 +11,7 @@ class SearchAction extends CommonAction
 			$this->error('搜索内容不能为空！');
 			die;
 		}
+		$put=removeXSS($put);
 		$where['title']=$put;
 		$where['content']=$put;
 		$where['islock'] = 0;
