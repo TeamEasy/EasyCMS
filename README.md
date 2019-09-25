@@ -6,7 +6,7 @@
 
 - **正式使用时建议修改index.php下的APP_DEBUG为FALSE** 
 
-- **在线效果：http://www.easycms.cc**
+- **在线效果：http://easycms.chenjie.info/**
 
 >陈捷编写
 >
