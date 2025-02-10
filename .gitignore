@@ -1,3 +1,5 @@
 .DS_Store
 App/Runtime
 config.php
+.idea
+*.lock

@@ -92,11 +92,11 @@ function check_dirfile(){
  */
 function check_func(){
 	$items = array(
-		array('mysql_connect',		'支持','success'),
+		array('mysqli_connect',		'支持','success'),
 		array('file_get_contents',	'支持','success'),
 		array('mb_strlen',			'支持','success'),
 		);
-	foreach ($items as $value) {
+	foreach ($items as &$value) {
 		if (!function_exists($value[0])) {
 			$value[1] = '不支持';
 			$value[2] = 'error';
