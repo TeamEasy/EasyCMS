@@ -24,11 +24,11 @@ $b=array(
     'DEFAULT_FILTER' => '', //全局过滤函数
 
     /* 数据库配置 */
-    'DB_TYPE'   => 'mysqli', // 数据库类型
+    'DB_TYPE'   => 'mysql', // 数据库类型
     'DB_HOST'   => '127.0.0.1', // 服务器地址
     'DB_NAME'   => 'easycms', // 数据库名
     'DB_USER'   => 'root', // 用户名
-    'DB_PWD'    => 'pass',  // 密码
+    'DB_PWD'    => 'devop',  // 密码
     'DB_PORT'   => '3306', // 端口
     'DB_PREFIX' => 'easy_', // 数据库表前缀
 
