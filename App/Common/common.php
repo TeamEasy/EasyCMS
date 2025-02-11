@@ -172,12 +172,15 @@ function ismobile() {
  }
 
  function removeXSS($val) {
-	static $obj = null;
-    if ($obj === null) {
-        // 载入核心文件
-        require_once ("./Public/HTMLPurifier/HTMLPurifier.includes.php");
-        $obj = new HTMLPurifier();
-    }
-    // 返回过滤后的数据
-    return $obj->purify($val);
+     // 去除所有HTML和PHP标签
+     $val = strip_tags($val);
+
+     // 将特殊字符转换为HTML实体
+     $val = htmlspecialchars($val, ENT_QUOTES, 'UTF-8');
+
+     // 使用正则表达式进一步清理可能的脚本注入
+     $val = preg_replace('/<script\b[^>]*>(.*?)<\/script>/is', "", $val); // 移除<script>标签
+     $val = preg_replace('/javascript:/i', "", $val); // 移除javascript伪协议
+
+     return $val;
 }
