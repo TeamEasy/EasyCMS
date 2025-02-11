@@ -97,11 +97,11 @@ class InstallAction extends Action{
 		//注册创始人帐号
 		$admin = session('admin_info');
 		//var_dump($admin);die;
-		register_administrator($db, $dbconfig['DB_PREFIX'], $admin, $auth);
+		register_administrator($db, $dbconfig['DB_PREFIX'], $admin);
 
 		$dbconfig['RBAC_SUPERADMIN']=$_SESSION['admin_info']['username'];
 		//创建配置文件
-		$conf 	=	write_config($dbconfig, $auth);
+		$conf 	=	write_config($dbconfig);
 		session('config_file',$conf);
 		if(session('error')){
 		} else {

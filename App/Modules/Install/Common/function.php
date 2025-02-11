@@ -96,7 +96,7 @@ function check_func(){
 		array('file_get_contents',	'支持','success'),
 		array('mb_strlen',			'支持','success'),
 		);
-	foreach ($items as $value) {
+	foreach ($items as &$value) {
 		if (!function_exists($value[0])) {
 			$value[1] = '不支持';
 			$value[2] = 'error';
