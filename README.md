@@ -10,3 +10,8 @@
 * 在线效果：https://easycms.chenjie.info
 
 >联系邮箱:chenjie@chenjie.info
+
+
+
+
+[![Powered by DartNode](https://dartnode.com/branding/DN-Open-Source-sm.png)](https://dartnode.com "Powered by DartNode - Free VPS for Open Source")
