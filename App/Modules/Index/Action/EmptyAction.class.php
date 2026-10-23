@@ -23,7 +23,11 @@ class EmptyAction extends Action {
 			R(ucfirst($exp[0]) .'/'. strtolower($exp[1]));
 			exit;
 		}
-		$rs = M("Router")->where(array('rewrite'=>$exp[0]))->field('url')->find();
+		// easy_router 表不存在时按"无自定义路由"处理，跳回首页
+		$rs = null;
+		if(M()->query("SHOW TABLES LIKE '".C('DB_PREFIX')."router'")){
+			$rs = M("Router")->where(array('rewrite'=>$exp[0]))->field('url')->find();
+		}
 		if($rs){			
 			//把news/p/2 转成 article/index/id/224/p/2 附加参数
 			for($i=1,$n=count($exp); $i<$n; $i++){

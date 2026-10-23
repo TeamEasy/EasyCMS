@@ -1,4 +1,6 @@
 .DS_Store
-App/Runtime
+App/Runtime/
 .idea
 install.lock
+.superpowers/
+docs/

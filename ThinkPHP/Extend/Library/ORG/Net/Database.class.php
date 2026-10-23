@@ -154,7 +154,12 @@ class Database{
             //备份数据记录
             $result = $db->query("SELECT * FROM `{$table}` LIMIT {$start}, 1000");
             foreach ($result as $row) {
-                $row = array_map('mysql_real_escape_string', $row);
+                $row = array_map(function($v){
+                    if(null===$v) return '';
+                    // 等价于 mysql_real_escape_string：须转义真实换行/回车/Ctrl-Z，保证一条 INSERT 占一个物理行
+                    return str_replace(array('\\',"\0","\n","\r","\x1a","'",'"'),
+                                      array('\\\\','\\0','\\n','\\r','\\Z',"\\'",'\\"'),(string)$v);
+                }, $row);
                 $sql = "INSERT INTO `{$table}` VALUES ('" . implode("', '", $row) . "');\n";
                 if(false === $this->write($sql)){
                     return false;
@@ -189,7 +194,7 @@ class Database{
         }
         
         for($i = 0; $i < 1000; $i++){
-            $sql .= $this->config['compress'] ? gzgets($gz) : fgets($gz); 
+            $sql .= $this->config['compress'] ? gzgets($gz, 4194304) : fgets($gz); 
             if(preg_match('/.*;$/', trim($sql))){
                 if(false !== $db->query($sql)){
                     $start += strlen($sql);
@@ -209,6 +214,10 @@ class Database{
      * 析构方法，用于关闭文件资源
      */
     public function __destruct(){
-        $this->config['compress'] ? @gzclose($this->fp) : @fclose($this->fp);
+        if($this->config['compress']){
+            is_resource($this->fp) && gzclose($this->fp);
+        }else{
+            is_resource($this->fp) && fclose($this->fp);
+        }
     }
 }

@@ -24,11 +24,11 @@ $b=array(
     'DEFAULT_FILTER' => '', //全局过滤函数
 
     /* 数据库配置 */
-    'DB_TYPE'   => 'mysql', // 数据库类型
-    'DB_HOST'   => '127.0.0.1', // 服务器地址
+    'DB_TYPE'   => 'mysqli', // 数据库类型
+    'DB_HOST'   => 'db', // 服务器地址
     'DB_NAME'   => 'easycms', // 数据库名
-    'DB_USER'   => 'root', // 用户名
-    'DB_PWD'    => 'devop',  // 密码
+    'DB_USER'   => 'easycms', // 用户名
+    'DB_PWD'    => 'easycms',  // 密码
     'DB_PORT'   => '3306', // 端口
     'DB_PREFIX' => 'easy_', // 数据库表前缀
 
@@ -44,7 +44,7 @@ $b=array(
    	),
 
     'USER_AUTH_KEY_F'   =>  'username',
-    'USER_AUTH_KEY_ID'   => 'user_id',
+    'USER_AUTH_KEY_ID'   =>  'user_id',
     'ADMIN_AUTH_KEY_B'=> 'adminuser',
     /* RBAC配置 */
     'RBAC_SUPERADMIN' => 'admin',       //超级管理员名称
@@ -54,7 +54,7 @@ $b=array(
     'USER_AUTH_KEY'   => 'uid',         //用户认证识别号
     'NOT_AUTH_MODULE' => 'Index',       //无需认证的控制器
     'NOT_AUTH_ACTION' => 'insert,upload,addCat,update',            //无需认证的动作方法
-    'RBAC_ROLE_TABLE' => 'easy_role',   //角色表名称 
+    'RBAC_ROLE_TABLE' => 'easy_role',   //角色表名称
     'RBAC_USER_TABLE' => 'easy_role_user',//角色表与用户表的中间表名称
     'RBAC_ACCESS_TABLE'=>'easy_access', //权限表名称
     'RBAC_NODE_TABLE' => 'easy_node',   //节点表名称
@@ -69,7 +69,7 @@ $b=array(
         'list:'         =>  array('list/list_{catsid}','600'),
         'article:'      =>  array('article/art_{articleid}','600'),
     ),
-    'HTML_CACHE_TIME'   =>  60, //静态缓存有效期
+    'HTML_CACHE_TIME'   =>  60, //静态文件缓存有效期
 
     'settingfile_path'  =>  './App/Conf/setting.config.php',
 

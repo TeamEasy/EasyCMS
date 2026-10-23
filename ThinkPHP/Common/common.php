@@ -97,7 +97,7 @@ function I($name,$default='',$filter=null) {
         case 'session' :   $input =& $_SESSION;   break;
         case 'cookie'  :   $input =& $_COOKIE;    break;
         case 'server'  :   $input =& $_SERVER;    break;
-        case 'globals' :   $input =& $GLOBALS;    break;
+        case 'globals' :   $input = $GLOBALS;    break;
         default:
             return NULL;
     }
@@ -214,7 +214,7 @@ function N($key, $step=0,$save=false) {
  */
 function parse_name($name, $type=0) {
     if ($type) {
-        return ucfirst(preg_replace("/_([a-zA-Z])/e", "strtoupper('\\1')", $name));
+        return ucfirst(preg_replace_callback("/_([a-zA-Z])/", function($m){return strtoupper($m[1]);}, $name));
     } else {
         return strtolower(trim(preg_replace("/[A-Z]/", "_\\0", $name), "_"));
     }
@@ -486,6 +486,8 @@ function R($url,$vars=array(),$layer='') {
     if($class){
         if(is_string($vars)) {
             parse_str($vars,$vars);
+        }elseif(!is_array($vars)){
+            $vars = array();
         }
         return call_user_func_array(array(&$class,$action.C('ACTION_SUFFIX')),$vars);
     }else{

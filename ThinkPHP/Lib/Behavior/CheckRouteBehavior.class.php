@@ -148,7 +148,7 @@ class CheckRouteBehavior extends Behavior {
         if(0=== strpos($url,'/') || 0===strpos($url,'http')) { // 路由重定向跳转
             if(strpos($url,':')) { // 传递动态参数
                 $values  =  array_values($matches);
-                $url  =  preg_replace('/:(\d+)/e','$values[\\1-1]',$url);
+                $url  =  preg_replace_callback('/:(\d+)/', function($m) use ($values){ return $values[$m[1]-1]; }, $url);
             }
             header("Location: $url", true,(is_array($route) && isset($route[1]))?$route[1]:301);
             exit;
@@ -165,7 +165,7 @@ class CheckRouteBehavior extends Behavior {
             $var   =   array_merge($matches,$var);
             // 解析剩余的URL参数
             if($paths) {
-                preg_replace('@(\w+)\/([^\/]+)@e', '$var[strtolower(\'\\1\')]=strip_tags(\'\\2\');', implode('/',$paths));
+                preg_replace_callback('@(\w+)\/([^\/]+)@', function($m) use (&$var){ $var[strtolower($m[1])]=strip_tags($m[2]); }, implode('/',$paths));
             }
             // 解析路由自动传入参数
             if(is_array($route) && isset($route[1])) {
@@ -188,7 +188,7 @@ class CheckRouteBehavior extends Behavior {
     private function parseRegex($matches,$route,$regx) {
         // 获取路由地址规则
         $url   =  is_array($route)?$route[0]:$route;
-        $url   =  preg_replace('/:(\d+)/e','$matches[\\1]',$url);
+        $url   =  preg_replace_callback('/:(\d+)/', function($m) use ($matches){ return $matches[$m[1]]; }, $url);
         if(0=== strpos($url,'/') || 0===strpos($url,'http')) { // 路由重定向跳转
             header("Location: $url", true,(is_array($route) && isset($route[1]))?$route[1]:301);
             exit;
@@ -198,7 +198,7 @@ class CheckRouteBehavior extends Behavior {
             // 解析剩余的URL参数
             $regx =  substr_replace($regx,'',0,strlen($matches[0]));
             if($regx) {
-                preg_replace('@(\w+)\/([^,\/]+)@e', '$var[strtolower(\'\\1\')]=strip_tags(\'\\2\');', $regx);
+                preg_replace_callback('@(\w+)\/([^,\/]+)@', function($m) use (&$var){ $var[strtolower($m[1])]=strip_tags($m[2]); }, $regx);
             }
             // 解析路由自动传入参数
             if(is_array($route) && isset($route[1])) {

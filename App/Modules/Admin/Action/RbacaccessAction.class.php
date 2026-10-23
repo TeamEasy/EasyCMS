@@ -13,7 +13,7 @@ class RbacAccessAction extends CommonAction{
 		}
 		$model = M('Access');
 		if (!empty($model)) {
-			$this->_list($model, $map);
+			$this->_list($model, $map, 'role_id');
 		}
 		$this->display();
 		return;

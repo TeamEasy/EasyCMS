@@ -247,7 +247,7 @@ abstract class Action {
                 case '_session' :   $input =& $_SESSION;   break;
                 case '_cookie'  :   $input =& $_COOKIE;    break;
                 case '_server'  :   $input =& $_SERVER;    break;
-                case '_globals' :   $input =& $GLOBALS;    break;
+                case '_globals' :   $input = $GLOBALS;    break;
                 default:
                     throw_exception(__CLASS__.':'.$method.L('_METHOD_NOT_EXIST_'));
             }

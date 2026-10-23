@@ -135,11 +135,11 @@ class Rsa {
         $data = substr($data, 1);
 
         // We cannot deal with block type 0
-    if($data{0} == '\0')
+    if($data[0] == '\0')
             die("Block type 0 not implemented.");
 
         // Then the block type must be 1 or 2
-    assert(($data{0} == "\x01") || ($data{0} == "\x02"));
+    assert(($data[0] == "\x01") || ($data[0] == "\x02"));
 
         // Remove the padding
     $offset = strpos($data, "\0", 1);
@@ -156,7 +156,7 @@ class Rsa {
 
         for($i = strlen($data) - 1; $i >= 0; $i--)
         {
-            $digit = ord($data{$i});
+            $digit = ord($data[$i]);
             $part_res = bcmul($digit, $radix);
             $result = bcadd($result, $part_res);
             $radix = bcmul($radix, $base);

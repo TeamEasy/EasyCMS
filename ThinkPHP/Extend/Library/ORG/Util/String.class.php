@@ -9,7 +9,7 @@
 // | Author: liu21st <liu21st@gmail.com>
 // +----------------------------------------------------------------------
 
-class String {
+class OrgString {
 
     /**
      * 生成UUID 单机使用
@@ -34,7 +34,7 @@ class String {
      * @return Boolean
      */
     static public function keyGen() {
-        return str_replace('-','',substr(String::uuid(),1,-1));
+        return str_replace('-','',substr(self::uuid(),1,-1));
     }
 
     /**
@@ -79,7 +79,7 @@ class String {
      * @param string $suffix 截断显示字符
      * @return string
      */
-    static public function msubstr($str, $start=0, $length, $charset="utf-8", $suffix=true) {
+    static public function msubstr($str, $start, $length, $charset="utf-8", $suffix=true) {
         if(function_exists("mb_substr"))
             $slice = mb_substr($str, $start, $length, $charset);
         elseif(function_exists('iconv_substr')) {
@@ -188,13 +188,13 @@ class String {
                 $char = substr($format,$i,1);
                 switch($char){
                     case "*"://字母和数字混合
-                        $strtemp   .= String::randString(1);
+                        $strtemp   .= self::randString(1);
                         break;
                     case "#"://数字
-                        $strtemp  .= String::randString(1,1);
+                        $strtemp  .= self::randString(1,1);
                         break;
                     case "$"://大写字母
-                        $strtemp .=  String::randString(1,2);
+                        $strtemp .=  self::randString(1,2);
                         break;
                     default://其他格式均不转换
                         $strtemp .=   $char;

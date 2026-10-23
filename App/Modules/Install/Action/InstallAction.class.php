@@ -10,7 +10,7 @@ class InstallAction extends Action{
 		if(session('step') === null){
 			$this->redirect('Index/index');
 		}
-		if(file_exists('/App/Modules/Install/data/install.lock')){
+		if(file_exists('./App/Modules/Install/Data/install.lock')){
 			$this->error('已经成功安装了EasyCMS，请不要重复安装!');
 		}
 	}

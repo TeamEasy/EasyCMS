@@ -19,8 +19,8 @@ class IndexAction extends CommonAction {
             '服务器域名/IP'=>$_SERVER['SERVER_NAME'].' [ '.gethostbyname($_SERVER['SERVER_NAME']).' ]',
             '剩余空间'=>round((@disk_free_space(".")/(1024*1024)),2).'M',
             'register_globals'=>get_cfg_var("register_globals")=="1" ? "ON" : "OFF",
-            'magic_quotes_gpc'=>(1===get_magic_quotes_gpc())?'YES':'NO',
-            'magic_quotes_runtime'=>(1===get_magic_quotes_runtime())?'YES':'NO',
+            'magic_quotes_gpc'=>'NO',
+            'magic_quotes_runtime'=>'NO',
             );
         $this->assign('info',$info);
 		$this->display();

@@ -1,0 +1,49 @@
+services:
+  php:
+    build:
+      context: .
+      dockerfile: docker/php/Dockerfile
+    image: easycms-php:8.3
+    volumes:
+      - ./:/var/www
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: unless-stopped
+
+  db:
+    image: mariadb:10.4
+    environment:
+      MARIADB_ROOT_PASSWORD: root
+      MARIADB_DATABASE: easycms
+      MARIADB_USER: easycms
+      MARIADB_PASSWORD: easycms
+    ports:
+      - "9306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+    # 与旧版备份保持一致的字符集；放宽 sql_mode 兼容 2014 年代码与零值日期
+    command:
+      - --character-set-server=utf8
+      - --collation-server=utf8_general_ci
+      - --sql-mode=
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "127.0.0.1", "-uroot", "-proot"]
+      interval: 5s
+      timeout: 5s
+      retries: 30
+    restart: unless-stopped
+
+  nginx:
+    image: nginx:stable
+    ports:
+      - "9080:80"
+    volumes:
+      - ./:/var/www
+      - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
+    depends_on:
+      - php
+    restart: unless-stopped
+
+volumes:
+  db_data:

@@ -54,7 +54,7 @@ function updateLock(id,num){
 						<if condition="$vo.lock eq 1">
 								<a href="javascript:void(0);" onclick="updateLock(<{$vo.id}>,0);">解锁</a>
 						<else/>
-							<if condition="$vo['username']==admin">无法锁定<else/>
+							<if condition="$vo['username']=='admin'">无法锁定<else/>
 								<a href="javascript:void(0);" onclick="updateLock(<{$vo.id}>,1);">锁定</a>
 							</if>
 						</if>

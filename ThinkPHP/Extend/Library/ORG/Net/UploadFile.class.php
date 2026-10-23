@@ -387,7 +387,7 @@ class UploadFile {//类定义开始
                 $name   =   md5($file['savename']);
                 $dir    =   '';
                 for($i=0;$i<$this->hashLevel;$i++) {
-                    $dir   .=  $name{$i}.'/';
+                    $dir   .=  $name[$i].'/';
                 }
                 break;
         }

@@ -67,7 +67,9 @@ class DbMysqli extends Db{
      * @access public
      */
     public function free() {
-        $this->queryID->free_result();
+        if (is_object($this->queryID)) {
+            $this->queryID->free_result();
+        }
         $this->queryID = null;
     }
 
@@ -89,14 +91,21 @@ class DbMysqli extends Db{
         $this->queryID = $this->_linkID->query($str);
         // 对存储过程改进
         if( $this->_linkID->more_results() ){
-            while (($res = $this->_linkID->next_result()) != NULL) {
-                $res->free_result();
+            while ($this->_linkID->next_result()) {
+                if($res = $this->_linkID->store_result()){
+                    $res->free_result();
+                }
             }
         }
         $this->debug();
         if ( false === $this->queryID ) {
             $this->error();
             return false;
+        } elseif (true === $this->queryID) {
+            // 非 SELECT 语句(mysqli 返回 true)，避免在布尔值上读取结果集属性
+            $this->numRows  = 0;
+            $this->numCols  = 0;
+            return true;
         } else {
             $this->numRows  = $this->queryID->num_rows;
             $this->numCols    = $this->queryID->field_count;
