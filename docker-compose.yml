@@ -21,7 +21,7 @@ services:
     ports:
       - "9306:3306"
     volumes:
-      - db_data:/var/lib/mysql
+      - ./db:/var/lib/mysql
     # 与旧版备份保持一致的字符集；放宽 sql_mode 兼容 2014 年代码与零值日期
     command:
       - --character-set-server=utf8
@@ -44,6 +44,3 @@ services:
     depends_on:
       - php
     restart: unless-stopped
-
-volumes:
-  db_data:

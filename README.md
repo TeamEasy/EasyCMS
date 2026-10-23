@@ -44,7 +44,7 @@ docker compose up -d --build
 说明：
 
 * 数据库在容器内的连接地址为 `db`，配置见 `App/Conf/config.php`（安装向导会自动生成）。
-* 数据库数据保存在 Docker 命名卷 `db_data`，代码目录直接挂载到容器，修改代码即时生效。
+* 数据库数据通过 bind mount 持久化到当前目录的 `./db`（对应容器内 `/var/lib/mysql`），代码目录直接挂载到容器，修改代码即时生效。`./db` 已在 `.gitignore` 中忽略，请勿提交。
 * `docker-compose.yml` 中为本地开发/演示用的弱口令，**生产环境请务必修改**。
 
 ### 使用域名 + 80 端口（对外访问）

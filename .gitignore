@@ -4,3 +4,5 @@ App/Runtime/
 install.lock
 .superpowers/
 docs/
+AGENTS.md
+db/
